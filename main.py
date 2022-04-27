@@ -1,34 +1,49 @@
 """
-This is an add-on to search a document for a regex and output all of the matches
+    Sentiment Analysis Add-on
 """
 
 import csv
 import re
 
 from documentcloud.addon import AddOn
+from happytransformer import HappyTextClassification
+import nltk
 
+# download the sentence parser from NLTK. 
+# gives the ability to break a bunch of text down into sentences.
+nltk.download("punkt")
 
-class Regex(AddOn):
+# also get the distilbert text classifier from HuggingFace's HappyTransformer.
+tc = HappyTextClassification(model_type="DISTILBERT", model_name="distilbert-base-uncased-finetuned-sst-2-english", num_labels=2) 
+
+class Sentiment(AddOn):
+
     def main(self):
+
+        # provide at least one document.
         if not self.documents:
             self.set_message("Please select at least one document")
             return
 
-        regex = self.data["regex"]
-        pattern = re.compile(regex)
-
-        with open("matches.csv", "w+") as file_:
+        with open("sentiment.csv", "w+") as file_:
             writer = csv.writer(file_)
-            writer.writerow(["match", "url"])
+            writer.writerow(["document_title", "sentence_number", "sentiment_label", "sentiment_valence"])
 
             for document in self.client.documents.list(id__in=self.documents):
-                writer.writerows(
-                    [m, document.canonical_url]
-                    for m in pattern.findall(document.full_text)
-                )
+
+                # break document text into sentences
+                sentences = nltk.tokenize.sent_tokenize(document.full_text)
+
+                # for each sentence, write the document's title, which sentence in the document
+                # we've analyzed, and what the sentiment breakdown is.
+                for idx, sentence in enumerate(sentences):
+                    sentiment_object = tc.classify_text(sentence)
+                    writer.writerow(
+                        [document.title, idx, sentiment_object.label, sentiment_object.score] 
+                    )
 
             self.upload_file(file_)
 
 
 if __name__ == "__main__":
-    Regex().main()
+    Sentiment().main()
