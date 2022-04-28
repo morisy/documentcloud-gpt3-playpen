@@ -27,7 +27,7 @@ class Sentiment(AddOn):
 
         with open("sentiment.csv", "w+") as file_:
             writer = csv.writer(file_)
-            writer.writerow(["document_title", "sentence_number", "sentiment_label", "sentiment_valence"])
+            writer.writerow(["document_title", "sentence", "sentiment_label", "sentiment_valence"])
 
             for document in self.client.documents.list(id__in=self.documents):
 
@@ -36,10 +36,10 @@ class Sentiment(AddOn):
 
                 # for each sentence, write the document's title, which sentence in the document
                 # we've analyzed, and what the sentiment breakdown is.
-                for idx, sentence in enumerate(sentences):
+                for sentence in sentences:
                     sentiment_object = tc.classify_text(sentence)
                     writer.writerow(
-                        [document.title, idx, sentiment_object.label, sentiment_object.score] 
+                        [document.title, sentence, sentiment_object.label, sentiment_object.score] 
                     )
 
             self.upload_file(file_)
