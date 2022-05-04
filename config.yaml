@@ -2,6 +2,9 @@ title: Sentiment Analysis
 description: >-
   This will return a CSV of the sentiment analysis run on
   each sentence of the input documents.
+
+  [Learn more about HuggingFace](https://huggingface.co/) and
+  [HappyTransformer](https://happytransformer.com/)
 type: object
 # How does this add-on accept documents
 # If more than one type is specified, the user will be prompted to choose one

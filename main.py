@@ -9,15 +9,19 @@ from documentcloud.addon import AddOn
 from happytransformer import HappyTextClassification
 import nltk
 
-# download the sentence parser from NLTK. 
+# download the sentence parser from NLTK.
 # gives the ability to break a bunch of text down into sentences.
 nltk.download("punkt")
 
 # also get the distilbert text classifier from HuggingFace's HappyTransformer.
-tc = HappyTextClassification(model_type="DISTILBERT", model_name="distilbert-base-uncased-finetuned-sst-2-english", num_labels=2) 
+tc = HappyTextClassification(
+    model_type="DISTILBERT",
+    model_name="distilbert-base-uncased-finetuned-sst-2-english",
+    num_labels=2,
+)
+
 
 class Sentiment(AddOn):
-
     def main(self):
 
         # provide at least one document.
@@ -27,7 +31,9 @@ class Sentiment(AddOn):
 
         with open("sentiment.csv", "w+") as file_:
             writer = csv.writer(file_)
-            writer.writerow(["document_title", "sentence", "sentiment_label", "sentiment_valence"])
+            writer.writerow(
+                ["document_title", "sentence", "sentiment_label", "sentiment_valence"]
+            )
 
             for document in self.client.documents.list(id__in=self.documents):
 
@@ -39,7 +45,12 @@ class Sentiment(AddOn):
                 for sentence in sentences:
                     sentiment_object = tc.classify_text(sentence)
                     writer.writerow(
-                        [document.title, [sentence], sentiment_object.label, sentiment_object.score] 
+                        [
+                            document.title,
+                            [sentence],
+                            sentiment_object.label,
+                            sentiment_object.score,
+                        ]
                     )
 
             self.upload_file(file_)
