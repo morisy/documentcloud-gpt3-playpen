@@ -1,10 +1,6 @@
-title: Sentiment Analysis
+title: The Fuzz
 description: >-
-  This will return a CSV of the sentiment analysis run on
-  each sentence of the input documents.
-
-  [Learn more about HuggingFace](https://huggingface.co/) and
-  [HappyTransformer](https://happytransformer.com/)
+  This Add-On runs [The Fuzz](https://github.com/seatgeek/thefuzz) against a set of documents (either the current search query or the documents you have selected).
 type: object
 # How does this add-on accept documents
 # If more than one type is specified, the user will be prompted to choose one
@@ -14,4 +10,10 @@ documents:
   # By the currently selected documents
   - selected
 # Properties can just be blank if you do not need any input data
-properties: {}
+properties:
+  # the key is the name of the variable that will be returned to your code
+  reference_doc:
+    # the title is what will be shown as the form label
+    title: Reference Doc (Paste Doc ID)
+    # a string is text
+    type: number
