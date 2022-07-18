@@ -1,27 +1,17 @@
 """
-    Sentiment Analysis Add-on
+    TheFuzz Implementation as a DocumentCloud Add-on
+    https://github.com/seatgeek/thefuzz
 """
 
 import csv
 import re
 
 from documentcloud.addon import AddOn
-from happytransformer import HappyTextClassification
-import nltk
-
-# download the sentence parser from NLTK.
-# gives the ability to break a bunch of text down into sentences.
-nltk.download("punkt")
-
-# also get the distilbert text classifier from HuggingFace's HappyTransformer.
-tc = HappyTextClassification(
-    model_type="DISTILBERT",
-    model_name="distilbert-base-uncased-finetuned-sst-2-english",
-    num_labels=2,
-)
+from thefuzz import fuzz
+from thefuzz import process
 
 
-class Sentiment(AddOn):
+class TheFuzz(AddOn):
     def main(self):
 
         # provide at least one document.
@@ -29,32 +19,25 @@ class Sentiment(AddOn):
             self.set_message("Please select at least one document")
             return
 
-        with open("sentiment.csv", "w+") as file_:
+        with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
             writer.writerow(
-                ["document_title", "sentence", "sentiment_label", "sentiment_valence"]
+                ["document_title", "url", "similarity"]
             )
+            
+            reference_doc = client.documents.get(self.data.get("reference_doc")
+                                             
 
             for document in self.client.documents.list(id__in=self.documents):
-
-                # break document text into sentences
-                sentences = nltk.tokenize.sent_tokenize(document.full_text)
-
-                # for each sentence, write the document's title, which sentence in the document
-                # we've analyzed, and what the sentiment breakdown is.
-                for sentence in sentences:
-                    sentiment_object = tc.classify_text(sentence)
-                    writer.writerow(
-                        [
-                            document.title,
-                            [sentence],
-                            sentiment_object.label,
-                            sentiment_object.score,
-                        ]
-                    )
-
-            self.upload_file(file_)
+                writer.writerow(
+                    [
+                        document.title,
+                        document.canonical_url,
+                        str(fuzz.ratio(reference_doc.full_text, document.full_text))
+                    ]
+                )
+             self.upload_file(file_)
 
 
 if __name__ == "__main__":
-    Sentiment().main()
+    TheFuzz().main()
