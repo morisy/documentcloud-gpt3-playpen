@@ -21,8 +21,7 @@ class TheFuzz(AddOn):
                 documents +=  document.id
         else:
             self.set_message("Running analysis on search results.")
-            for document in self.client.documents.search(self.query):
-                documents +=  document.id
+            documents = self.client.documents.search(self.query)
 
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
