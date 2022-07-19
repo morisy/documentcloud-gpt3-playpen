@@ -25,7 +25,7 @@ class TheFuzz(AddOn):
                 ["document_title", "url", "similarity"]
             )
             
-            reference_doc = client.documents.get(self.data.get("reference_doc")
+            reference_doc = client.documents.get(self.data.get("reference_doc"))
                                              
 
             for document in self.client.documents.list(id__in=self.documents):
