@@ -29,14 +29,17 @@ class TheFuzz(AddOn):
                                              
 
             for document in self.client.documents.list(id__in=self.documents):
+                score =  str(fuzz.ratio(reference_doc.full_text, document.full_text))
                 writer.writerow(
                     [
                         document.title,
                         document.canonical_url,
-                        str(fuzz.ratio(reference_doc.full_text, document.full_text))
+                        str(fuzz.ratio(score)
                     ]
+                    self.set_message("The document [", document.title, "]/(", document.canonical_url, "scored ", score)
                 )
-            self.upload_file(file_)
+                
+        self.upload_file(file_)
 
 
 if __name__ == "__main__":
