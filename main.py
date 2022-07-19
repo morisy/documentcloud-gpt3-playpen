@@ -13,7 +13,7 @@ from thefuzz import process
 
 class TheFuzz(AddOn):
     def main(self):
-
+        documents = []
         # provide at least one document.
         if self.documents:
             self.set_message("Running analysis on selected documents.")
