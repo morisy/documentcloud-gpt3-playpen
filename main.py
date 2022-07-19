@@ -26,7 +26,6 @@ class TheFuzz(AddOn):
             )
             
             reference_doc = self.client.documents.get(self.data.get("reference_doc"))
-                                             
 
             for document in self.client.documents.list(id__in=self.documents):
                 score =  str(fuzz.ratio(reference_doc.full_text, document.full_text))
@@ -38,8 +37,7 @@ class TheFuzz(AddOn):
                     ]
                 )
 #                self.set_message(str("The document [", document.title, "]/(", document.canonical_url, "scored ", score))
-                
-        self.upload_file(file_)
+            self.upload_file(file_)
 
 
 if __name__ == "__main__":
