@@ -16,8 +16,8 @@ class TheFuzz(AddOn):
 
         # provide at least one document.
         if not self.documents:
-            self.set_message("Please select at least one document")
-            return
+            self.set_message("Running analysis on search results.")
+            self.documents =  self.client.documents.search(self.query)
 
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
