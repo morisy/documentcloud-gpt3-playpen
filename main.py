@@ -26,7 +26,7 @@ class TheFuzz(AddOn):
             search_results = self.client.documents.search(self.query)
             for document in search_results:
                 self.set_message(f"Adding {document} to the analysis queue.")
-                documents.append(str(document.id)
+                documents.append(str(document.id))
         
         self.set_message(f"The documents to be analyzed are {str(documents)[0:50]}.")
         time.sleep(5.5)
