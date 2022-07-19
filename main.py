@@ -18,11 +18,14 @@ class TheFuzz(AddOn):
         if self.documents:
             self.set_message("Running analysis on selected documents.")
             for document in self.documents:
+                self.set_message(f"Adding {document.id} to the analysis queue.")
                 documents +=  document.id
         else:
             self.set_message("Running analysis on search results.")
-            documents = self.client.documents.search(self.query)
-
+            for document in self.client.documents.search(self.query):
+                self.set_message(f"Adding {document.id} to the analysis queue.")
+                documents +=  document.id
+                
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
             writer.writerow(
