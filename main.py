@@ -34,7 +34,7 @@ class TheFuzz(AddOn):
                     [
                         document.title,
                         document.canonical_url,
-                        str(fuzz.ratio(score)
+                        str(score)
                     ]
                     self.set_message("The document [", document.title, "]/(", document.canonical_url, "scored ", score)
                 )
