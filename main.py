@@ -29,6 +29,7 @@ class TheFuzz(AddOn):
 
             for document in self.client.documents.list(id__in=self.documents):
                 score =  str(fuzz.ratio(reference_doc.full_text, document.full_text))
+                self.set_message(f"The document {document.title} scored {score} "
                 writer.writerow(
                     [
                         document.title,
@@ -36,7 +37,6 @@ class TheFuzz(AddOn):
                         str(score)
                     ]
                 )
-#                self.set_message(str("The document [", document.title, "]/(", document.canonical_url, "scored ", score))
             self.upload_file(file_)
 
 
