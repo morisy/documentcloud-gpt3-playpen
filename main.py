@@ -36,8 +36,8 @@ class TheFuzz(AddOn):
                         document.canonical_url,
                         str(score)
                     ]
-                    self.set_message("The document [", document.title, "]/(", document.canonical_url, "scored ", score)
                 )
+                self.set_message("The document [", document.title, "]/(", document.canonical_url, "scored ", score)
                 
         self.upload_file(file_)
 
