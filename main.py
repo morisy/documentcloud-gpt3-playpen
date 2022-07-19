@@ -27,7 +27,7 @@ class TheFuzz(AddOn):
                 self.set_message(f"Adding {document.id} to the analysis queue.")
                 documents.append(str(document))
         
-        self.set_message(f"The documents to be analyzed are {string(documents)}.")
+        self.set_message(f"The documents to be analyzed are {str(documents)}.")
         time.sleep(5.5)
                 
         with open("compared_docs.csv", "w+") as file_:
