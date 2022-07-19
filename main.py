@@ -24,7 +24,6 @@ class TheFuzz(AddOn):
             self.set_message("Running analysis on search results.")
             search_results = self.client.documents.search(self.query)
             for document in search_results:
-                self.set_message(f"Adding {document} to the analysis queue.")
                 documents.append(str(document.id))
         
         with open("compared_docs.csv", "w+") as file_:
