@@ -15,10 +15,14 @@ class TheFuzz(AddOn):
     def main(self):
 
         # provide at least one document.
-        if not self.documents:
+        if self.documents:
+            self.set_message("Running analysis on selected documents.")
+            for document in self.documents:
+                documents +=  document.id
+        else:
             self.set_message("Running analysis on search results.")
             for document in self.client.documents.search(self.query):
-                self.documents +=  document.id
+                documents +=  document.id
 
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
@@ -28,7 +32,7 @@ class TheFuzz(AddOn):
             
             reference_doc = self.client.documents.get(self.data.get("reference_doc"))
             self.set_message(f"Working on analyzing {str(len(self.documents))} documents.")
-            for doc_id in self.documents:
+            for doc_id in documents:
                 document = self.client.documents.get(doc_id)
                 score =  str(fuzz.ratio(reference_doc.full_text, document.full_text))
                 self.set_message(f"The document {document.title} scored {score}.")
