@@ -5,6 +5,7 @@
 
 import csv
 import re
+import time
 
 from documentcloud.addon import AddOn
 from thefuzz import fuzz
@@ -19,12 +20,15 @@ class TheFuzz(AddOn):
             self.set_message("Running analysis on selected documents.")
             for document in self.documents:
                 self.set_message(f"Adding {document} to the analysis queue.")
-                documents +=  str(document)
+                documents.append(str(document))
         else:
             self.set_message("Running analysis on search results.")
             for document in self.client.documents.search(self.query):
                 self.set_message(f"Adding {document.id} to the analysis queue.")
-                documents +=  str(document.id)
+                documents.append(str(document))
+        
+        self.set_message(f"The documents to be analyzed are {string(documents)}.")
+        time.sleep(5.5)
                 
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
