@@ -19,7 +19,6 @@ class TheFuzz(AddOn):
         if self.documents:
             self.set_message("Running analysis on selected documents.")
             for document in self.documents:
-                self.set_message(f"Adding {document} to the analysis queue.")
                 documents.append(str(document))
         else:
             self.set_message("Running analysis on search results.")
@@ -39,7 +38,6 @@ class TheFuzz(AddOn):
             for doc_id in documents:
                 document = self.client.documents.get(doc_id)
                 score =  str(fuzz.token_set_ratio(reference_doc.full_text, document.full_text))
-                self.set_message(f"The document {document.title} scored {score}.")
                 writer.writerow(
                     [
                         document.title,
