@@ -26,7 +26,7 @@ class TheFuzz(AddOn):
             )
             
             reference_doc = self.client.documents.get(self.data.get("reference_doc"))
-            self.set_message(f"Working on analyzing {str(len(self.client.documents.list(id__in=self.documents))} documents.")
+            self.set_message(f"Working on analyzing {str(len(self.client.documents.list(id__in=self.documents)))} documents.")
             for document in self.client.documents.list(id__in=self.documents):
                 score =  str(fuzz.ratio(reference_doc.full_text, document.full_text))
                 self.set_message(f"The document {document.title} scored {score}.")
