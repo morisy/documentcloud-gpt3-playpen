@@ -1,23 +1,7 @@
-# DocumentCloud Sentiment Analysis Add-on 
+# DocumentCloud The Fuzz Add-On
  
-It can be useful to know what the tone of a document is.
-Generally speaking, the smallest unit of tone (i.e. non-explicit 
-expressions of opinion or of intention) one normally notices is 
-at the sentence level.
 
-This add-on breaks apart the input documents into their respective
-individual sentences and runs sentiment analysis on each of these 
-sentences. It outputs the document name, the sentence number,and
-the identified (sentiment, valence) rating. 
-
-This is a computationally heavy task so it is recommended that the 
-add-on generally be run on smaller and fewer documents if possible.
-
-Uses HuggingFace and HappyTransformer technology.
-
-Ref: 
-https://huggingface.co/
-https://happytransformer.com/
+An implementation of [The Fuzz](https://github.com/seatgeek/thefuzz) library that scores documents regarding their similarity to a given document. Currently it accepts the document ID of one document that you want to compare documents to, and then returns a PDF scoring either selected documents or the entire list of search results regarding how similar they are. You can fork and customize this Add-On to meet your specific use case. To do so, you should primarily need to edit [Main.py](https://github.com/morisy/documentcloud-thefuzz/blob/main/main.py) and [then install the forked Add-On into your DocumentCloud account](https://www.documentcloud.org/help/add-ons/#run-your-add-on-in-documentcloud).
 
 ## Files
 
