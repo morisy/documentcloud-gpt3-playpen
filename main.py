@@ -36,7 +36,7 @@ class TheFuzz(AddOn):
                         str(fuzz.ratio(reference_doc.full_text, document.full_text))
                     ]
                 )
-             self.upload_file(file_)
+            self.upload_file(file_)
 
 
 if __name__ == "__main__":
