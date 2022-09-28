@@ -10,3 +10,6 @@ on:
 jobs:
   Update-Config:
     uses: MuckRock/documentcloud-addon-workflows/.github/workflows/update-config.yml@v1
+
+env:
+  API_KEY: ${{ secrets.API_KEY }}
