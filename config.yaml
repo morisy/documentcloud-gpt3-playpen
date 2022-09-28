@@ -1,6 +1,6 @@
-title: The Fuzz
+title: GPT-3 Playground
 description: >-
-  This Add-On runs [The Fuzz](https://github.com/seatgeek/thefuzz) against a set of documents (either the current search query or the documents you have selected).
+  Describe your investigation and this will use GPT-3 to try and assess if a given document is relevant or irrelevant. Can get expensive.
 type: object
 # How does this add-on accept documents
 # If more than one type is specified, the user will be prompted to choose one
@@ -12,8 +12,8 @@ documents:
 # Properties can just be blank if you do not need any input data
 properties:
   # the key is the name of the variable that will be returned to your code
-  reference_doc:
+  investigation:
     # the title is what will be shown as the form label
-    title: Reference Doc (Paste Doc ID)
+    title: Investigation
     # a string is text
-    type: number
+    type: string
