@@ -32,7 +32,7 @@ class GPTPlay(AddOn):
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
             writer.writerow(
-                ["document_title", "url", "similarity"]
+                ["document_title", "url", "relevance", "reason"]
             )
             
             investigation = self.client.documents.get(self.data.get("investigation"))
