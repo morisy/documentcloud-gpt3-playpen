@@ -35,7 +35,7 @@ class GPTPlay(AddOn):
                 ["document_title", "url", "relevance", "reason"]
             )
             
-            investigation = self.client.documents.get(self.data.get("investigation"))
+            investigation = self.data.get("investigation"))
             self.set_message(f"Working on analyzing {str(len(self.documents))} documents.")
             
             for doc_id in documents:
