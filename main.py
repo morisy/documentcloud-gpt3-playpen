@@ -50,13 +50,17 @@ class GPTPlay(AddOn):
                     frequency_penalty=0,
                     presence_penalty=0
                     )
-
+                
+                response_list = response.split("\n")
+                relevance = response_list[-1]
+                certainty = response_list[-2]
+                
                 writer.writerow(
                     [
                         document.title,
                         document.canonical_url,
-                        response.splitlines()[-2],
-                        response.splitlines()[-1]
+                        relevance,
+                        certainty
                     ]
                 )
             self.upload_file(file_)
