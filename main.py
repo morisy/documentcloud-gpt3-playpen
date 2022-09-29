@@ -54,9 +54,8 @@ class GPTPlay(AddOn):
                     )
                 
                 r = response.json()
-                print(str(r))
                 response_completion = r["choices"]["text"]
-                print response_completion
+                print(response_completion)
                 
                 response_list = response_completion.split("\n")
                 relevance = response_list[-1]
