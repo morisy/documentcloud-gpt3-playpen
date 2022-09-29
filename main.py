@@ -16,7 +16,17 @@ openai.api_key = os.environ["TOKEN"]
 
 class GPTPlay(AddOn):    
     def main(self):
-        documents = self.get_documents()
+        documents = []
+        # provide at least one document.
+        if self.documents:
+            self.set_message("Running analysis on selected documents.")
+            for document in self.documents:
+                documents.append(str(document))
+        else:
+            self.set_message("Running analysis on search results.")
+            search_results = self.client.documents.search(self.query)
+            for document in search_results:
+                documents.append(str(document.id))
         
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
@@ -33,9 +43,8 @@ class GPTPlay(AddOn):
                                           ".":  r"\."}))            
             self.set_message(f"Working on analyzing {str(len(self.documents))} documents.")
             
-            for doc_num in documents:
+            for doc_id in documents:
                 try:
-                    doc_id = str(doc_id)
                     document = self.client.documents.get(doc_id)
                     full_text = document.get_page_text(1) # Just starting with page one for now due to API limits.
 
