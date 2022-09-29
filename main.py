@@ -33,8 +33,9 @@ class GPTPlay(AddOn):
                                           ".":  r"\."}))            
             self.set_message(f"Working on analyzing {str(len(self.documents))} documents.")
             
-            for doc_id in documents:
+            for doc_num in documents:
                 try:
+                    doc_id = str(doc_id)
                     document = self.client.documents.get(doc_id)
                     full_text = document.get_page_text(1) # Just starting with page one for now due to API limits.
 
