@@ -12,7 +12,7 @@ from documentcloud.addon import AddOn
 import os
 import openai
 
-openai.api_key = os.environ['API_KEY']
+openai.api_key = API_KEY
 
 
 
