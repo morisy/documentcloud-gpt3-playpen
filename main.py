@@ -34,7 +34,13 @@ class GPTPlay(AddOn):
                 ["document_title", "url", "relevance", "certainty", "reason", "document type", "newsworthiness", "summary"]
             )
             
-            investigation = self.data.get("investigation")
+            investigation = self.data.get("investigation").translate(str.maketrans({"-":  r"\-",
+                                          "]":  r"\]",
+                                          "\\": r"\\",
+                                          "^":  r"\^",
+                                          "$":  r"\$",
+                                          "*":  r"\*",
+                                          ".":  r"\."}))            
             self.set_message(f"Working on analyzing {str(len(self.documents))} documents.")
             
             for doc_id in documents:
