@@ -1,6 +1,6 @@
 title: GPT-3 Playground
 description: >-
-  Describe your investigation and this will use GPT-3 to try and assess if a given document is relevant or irrelevant. Can get expensive.
+  Describe your investigation and this will use GPT-3 to try and assess if a given document is relevant or irrelevant. Please limit to a few dozen selections at a time.
 type: object
 # How does this add-on accept documents
 # If more than one type is specified, the user will be prompted to choose one
