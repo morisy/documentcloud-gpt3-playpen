@@ -6,8 +6,6 @@ import csv
 import re
 import time
 
-import json
-
 from documentcloud.addon import AddOn
 
 
@@ -53,12 +51,8 @@ class GPTPlay(AddOn):
                     presence_penalty=0
                     )
                                 
-                data = json.loads(response)
-                
-                response_completion = data["choices"]["text"]
-                print(response_completion)
-                
-                response_list = response_completion.split("\n")
+                print(completion.choices[0].text)
+                response_list = completion.choices[0].text.split("\n")
                 relevance = response_list[-1]
                 certainty = response_list[-2]
                 
