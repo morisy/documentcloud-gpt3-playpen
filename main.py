@@ -72,6 +72,8 @@ class GPTPlay(AddOn):
                             summary
                         ]
                     )
+                except:
+                    print("Error, moving on to the next item."
             self.upload_file(file_)
 
 
