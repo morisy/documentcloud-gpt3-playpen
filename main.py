@@ -59,55 +59,19 @@ class GPTPlay(AddOn):
                         )
 
                     print(response.choices[0].text)
-                    response_list = response.choices[0]
+                    results = response.choices[0]
    
                     try:
-                        if "Relevance:" in response:
-                            text = response.split('Relevance:')[1]
-                            text = text.strip()
-                            relevance = text
-                            print("Parsed relevance.")
-                        else:
-                            relevance = "Unknown."
-                        print(relevance)
+                        relevance = results.split("Relevance: ")[1].split("\n\n")[0]
+                        print("Relevance saved")
+                        certainty = results.split("Confidence: ")[1].split("\n\n")[0]
+                        reason = results.split("Reason: ")[1].split("\n\n")[0]
+                        print("reason saved")
+                        doctype = results.split("Type of Document: ")[1].split("\n\n")[0]
+                        newsworthiness = results.split("Newsworthiness: ")[1].split("\n\n")[0]
+                        summary = results.split("Summary: ")[1]
                     except:
-                        print("Relevance not parsed.")
-                        relevance = "Unknown"
-
-                    try:
-                        regex ="Certainty: [a-zA-Z]+"
-                        pattern = re.compile(regex)
-                        relevance = re.findall(pattern, response_list)[0] # Just want the first one
-                    except:
-                        relevance = "Unknown"
-                        
-                    try:
-                        regex ="Reason: [a-zA-Z]+"
-                        pattern = re.compile(regex)
-                        reason = re.findall(pattern, response_list)[0] # Just want the first one
-                    except:
-                        reason = "Unknown"
-                        
-                    try:
-                        regex =" Type of Document: [a-zA-Z]+"
-                        pattern = re.compile(regex)
-                        doctype = re.findall(pattern, response_list)[0] # Just want the first one
-                    except:
-                        doctype = "Unknown"
-                        
-                    try:
-                        regex = "Newsworthiness: [a-zA-Z]+"
-                        pattern = re.compile(regex)
-                        newsworthiness = re.findall(pattern, response_list)[0] # Just want the first one
-                    except:
-                        newsworthiness = "Unknown"  
-                        
-                    try:
-                        regex = "Summary: [a-zA-Z]+"
-                        pattern = re.compile(regex)
-                        summary = re.findall(pattern, response_list)[0] # Just want the first one
-                    except:
-                        summary = "Unknown"   
+                        print("Extracting results failed.")
                         
                     writer.writerow(
                         [
