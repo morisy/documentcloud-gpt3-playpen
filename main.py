@@ -12,7 +12,7 @@ from documentcloud.addon import AddOn
 import os
 import openai
 
-print("Testing: %s")
+print("Testing: %s") % (os.environ.get("API_KEY"))
 openai.api_key = os.environ.get("API_KEY") % (os.environ.get("API_KEY"))
 
 class GPTPlay(AddOn):    
