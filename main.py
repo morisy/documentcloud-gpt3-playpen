@@ -68,7 +68,7 @@ class GPTPlay(AddOn):
                         reason = results.split("Reason: ")[1].split("\nType of Document")[0]
                         doctype = results.split("Type of Document: ")[1].split("\n")[0]
                         newsworthiness = results.split("Newsworthiness: ")[1].split("\n")[0]
-                        newsworthiness = results.split("Entities: ")[1].split("\n")[0]
+                        entities = results.split("Entities: ")[1].split("\n")[0]
                         summary = results.split("Summary: ")[-1]
                     except:
                         print("Extracting results failed.")
@@ -82,6 +82,7 @@ class GPTPlay(AddOn):
                             reason,
                             doctype,
                             newsworthiness,
+                            entities,
                             summary
                         ]
                     )
