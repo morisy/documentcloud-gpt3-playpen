@@ -52,9 +52,10 @@ class GPTPlay(AddOn):
                     frequency_penalty=0,
                     presence_penalty=0
                     )
+                                
+                data = json.loads(response)
                 
-                r = response.json()
-                response_completion = r["choices"]["text"]
+                response_completion = data["choices"]["text"]
                 print(response_completion)
                 
                 response_list = response_completion.split("\n")
