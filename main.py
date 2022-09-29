@@ -6,6 +6,8 @@ import csv
 import re
 import time
 
+import json
+
 from documentcloud.addon import AddOn
 
 
@@ -52,6 +54,8 @@ class GPTPlay(AddOn):
                     )
                 
                 print(str(response))
+                r = response.json()
+                response_list = r["choices"]["text"]
                 
                 response_list = response.split("\n")
                 relevance = response_list[-1]
