@@ -62,9 +62,12 @@ class GPTPlay(AddOn):
                     response_list = response.choices[0]
    
                     try:
-                        regex ="Relevance: [a-zA-Z]+"
-                        pattern = re.compile(regex)
-                        relevance = re.findall(pattern, response_list)[0] # Just want the first one
+                        if "Relevance:" in response:
+                            text = response.split('Relevance:')[1]
+                            text = text.strip()
+                            relevance = text
+                        else:
+                            relevance = "Unknown."
                         print(relevance)
                     except:
                         print("Relevance not parsed.")
