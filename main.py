@@ -66,6 +66,7 @@ class GPTPlay(AddOn):
                             text = response.split('Relevance:')[1]
                             text = text.strip()
                             relevance = text
+                            print("Parsed relevance.")
                         else:
                             relevance = "Unknown."
                         print(relevance)
