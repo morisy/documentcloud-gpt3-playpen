@@ -73,7 +73,7 @@ class GPTPlay(AddOn):
                         ]
                     )
                 except:
-                    print("Error, moving on to the next item."
+                    print("Error, moving on to the next item.")
             self.upload_file(file_)
 
 
