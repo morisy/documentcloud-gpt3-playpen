@@ -53,11 +53,12 @@ class GPTPlay(AddOn):
                     presence_penalty=0
                     )
                 
-                print(str(response))
                 r = response.json()
-                response_list = r["choices"]["text"]
+                print(str(r))
+                response_completion = r["choices"]["text"]
+                print response_completion
                 
-                response_list = response.split("\n")
+                response_list = response_completion.split("\n")
                 relevance = response_list[-1]
                 certainty = response_list[-2]
                 
