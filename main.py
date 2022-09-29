@@ -59,7 +59,7 @@ class GPTPlay(AddOn):
                         )
 
                     print(response.choices[0].text)
-                    results = response.choices[0]
+                    results = response.choices[0].text
    
                     try:
                         relevance = results.split("Relevance: ")[1].split("\n\n")[0]
