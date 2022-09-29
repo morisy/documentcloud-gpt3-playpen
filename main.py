@@ -66,10 +66,9 @@ class GPTPlay(AddOn):
                         print("Relevance saved")
                         certainty = results.split("Confidence: ")[1].split("\nReason")[0]
                         reason = results.split("Reason: ")[1].split("\nType of Document")[0]
-                        print("reason saved")
                         doctype = results.split("Type of Document: ")[1].split("\n")[0]
                         newsworthiness = results.split("Newsworthiness: ")[1].split("\n")[0]
-                        summary = results.split("Summary: ")[0]
+                        summary = results.split("Summary: ")[-1]
                     except:
                         print("Extracting results failed.")
                         
@@ -79,6 +78,7 @@ class GPTPlay(AddOn):
                             document.canonical_url,
                             relevance,
                             certainty,
+                            reason,
                             doctype,
                             newsworthiness,
                             summary
