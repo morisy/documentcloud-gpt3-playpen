@@ -65,42 +65,42 @@ class GPTPlay(AddOn):
                         regex ="Relevance: [a-zA-Z]+"
                         pattern = re.compile(regex)
                         relevance = re.findall(pattern, response_list)[0] # Just want the first one
-                    else:
+                    except:
                         relevance = "Unknown"
 
                     try:
                         regex ="Certainty: [a-zA-Z]+"
                         pattern = re.compile(regex)
                         relevance = re.findall(pattern, response_list)[0] # Just want the first one
-                    else:
+                    except:
                         relevance = "Unknown"
                         
                     try:
                         regex ="Reason: [a-zA-Z]+"
                         pattern = re.compile(regex)
                         reason = re.findall(pattern, response_list)[0] # Just want the first one
-                    else:
+                    except:
                         reason = "Unknown"
                         
                     try:
                         regex =" Type of Document: [a-zA-Z]+"
                         pattern = re.compile(regex)
                         doctype = re.findall(pattern, response_list)[0] # Just want the first one
-                    else:
+                    except:
                         doctype = "Unknown"
                         
                     try:
                         regex = "Newsworthiness: [a-zA-Z]+"
                         pattern = re.compile(regex)
                         newsworthiness = re.findall(pattern, response_list)[0] # Just want the first one
-                    else:
+                    except:
                         newsworthiness = "Unknown"  
                         
                     try:
                         regex = "Summary: [a-zA-Z]+"
                         pattern = re.compile(regex)
                         summary = re.findall(pattern, response_list)[0] # Just want the first one
-                    else:
+                    except:
                         summary = "Unknown"   
                         
                     writer.writerow(
