@@ -51,6 +51,8 @@ class GPTPlay(AddOn):
                     presence_penalty=0
                     )
                 
+                print(str(response))
+                
                 response_list = response.split("\n")
                 relevance = response_list[-1]
                 certainty = response_list[-2]
