@@ -31,7 +31,7 @@ class GPTPlay(AddOn):
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
             writer.writerow(
-                ["document_title", "url", "relevance", "reason"]
+                ["document_title", "url", "relevance", "certainty", "reason", "document type", "newsworthiness", "summary"]
             )
             
             investigation = self.data.get("investigation")
@@ -53,9 +53,10 @@ class GPTPlay(AddOn):
                                 
                 print(response.choices[0].text)
                 response_list = response.choices[0].text.split("\n")
-                relevance = response_list[-9]
-                certainty = response_list[-7]
-                doctype response_list[-5]
+                relevance = response_list[-11]
+                certainty = response_list[-9]
+                reason = response_list[-7]
+                doctype = response_list[-5]
                 newsworthiness = response_list[-3]
                 summary = response_list[-1]
                 
