@@ -1,7 +1,7 @@
-# DocumentCloud The Fuzz Add-On
+# DocumentCloud GPT-3 Add-On
  
 
-An implementation of [The Fuzz](https://github.com/seatgeek/thefuzz) library that scores documents regarding their similarity to a given document. Currently it accepts the document ID of one document that you want to compare documents to, and then returns a PDF scoring either selected documents or the entire list of search results regarding how similar they are. You can fork and customize this Add-On to meet your specific use case. To do so, you should primarily need to edit [Main.py](https://github.com/morisy/documentcloud-thefuzz/blob/main/main.py) and [then install the forked Add-On into your DocumentCloud account](https://www.documentcloud.org/help/add-ons/#run-your-add-on-in-documentcloud).
+Warning: This Add-On is tied to a paid service and can cost money. Please use on batches of 10-20 documents without prior discussion. It analyzes the first page of documents and categorizes/summarizes them across a variety of criteria.
 
 ## Files
 
