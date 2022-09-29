@@ -17,3 +17,14 @@ properties:
     title: Investigation
     # a string is text
     type: string
+  prompt1:
+    # the title is what will be shown as the form label
+    title: Add an additional category for it to try to fill in, such as Sentiment 
+    # a string is text
+    type: string
+  prompt2:
+    # the title is what will be shown as the form label
+    title: Add an additional category for it to try to fill in, such as Sentiment 
+    # a string is text
+    type: string
+
