@@ -16,17 +16,7 @@ openai.api_key = os.environ["TOKEN"]
 
 class GPTPlay(AddOn):    
     def main(self):
-        documents = []
-        # provide at least one document.
-        if self.documents:
-            self.set_message("Running analysis on selected documents.")
-            for document in self.documents:
-                documents.append(str(document))
-        else:
-            self.set_message("Running analysis on search results.")
-            search_results = self.client.documents.search(self.query)
-            for document in search_results:
-                documents.append(str(document.id))
+        documents = self.get_documents()
         
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
