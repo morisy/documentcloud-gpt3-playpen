@@ -62,14 +62,14 @@ class GPTPlay(AddOn):
                     results = response.choices[0].text
    
                     try:
-                        relevance = results.split("Relevance: ")[1].split("\n\n")[0]
+                        relevance = results.split("Relevance: ")[1].split("Confidence")[0]
                         print("Relevance saved")
-                        certainty = results.split("Confidence: ")[1].split("\n\n")[0]
-                        reason = results.split("Reason: ")[1].split("\n\n")[0]
+                        certainty = results.split("Confidence: ")[1].split("\nReason")[0]
+                        reason = results.split("Reason: ")[1].split("\nType of Document")[0]
                         print("reason saved")
-                        doctype = results.split("Type of Document: ")[1].split("\n\n")[0]
-                        newsworthiness = results.split("Newsworthiness: ")[1].split("\n\n")[0]
-                        summary = results.split("Summary: ")[1]
+                        doctype = results.split("Type of Document: ")[1].split("\n")[0]
+                        newsworthiness = results.split("Newsworthiness: ")[1].split("\n")[0]
+                        summary = results.split("Summary: ")[0]
                     except:
                         print("Extracting results failed.")
                         
