@@ -39,7 +39,7 @@ class GPTPlay(AddOn):
             
             for doc_id in documents:
                 document = self.client.documents.get(doc_id)
-                full_text = document.full_text
+                full_text = document.get_page_text(1) # Just starting with page one for now due to API limits.
 
                 response = openai.Completion.create(
                     model="text-davinci-002",
