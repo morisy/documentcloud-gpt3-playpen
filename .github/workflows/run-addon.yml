@@ -4,6 +4,6 @@ on: repository_dispatch
 
 jobs:
   env:
-    API_KEY: ${{ API_KEY }}
+    API_KEY: ${{ secrets.API_KEY }}
   Run-Add-On:
     uses: MuckRock/documentcloud-addon-workflows/.github/workflows/run-addon.yml@v1
