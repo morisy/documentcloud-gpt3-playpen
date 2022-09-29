@@ -51,8 +51,8 @@ class GPTPlay(AddOn):
                     presence_penalty=0
                     )
                                 
-                print(completion.choices[0].text)
-                response_list = completion.choices[0].text.split("\n")
+                print(openai.Completion.choices[0].text)
+                response_list = openai.Completion.choices[0].text.split("\n")
                 relevance = response_list[-1]
                 certainty = response_list[-2]
                 
