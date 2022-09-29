@@ -65,7 +65,9 @@ class GPTPlay(AddOn):
                         regex ="Relevance: [a-zA-Z]+"
                         pattern = re.compile(regex)
                         relevance = re.findall(pattern, response_list)[0] # Just want the first one
+                        print(relevance)
                     except:
+                        print("Relevance not parsed.")
                         relevance = "Unknown"
 
                     try:
