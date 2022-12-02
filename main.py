@@ -55,8 +55,8 @@ class GPTPlay(AddOn):
                     full_text = document.get_page_text(1) # Just starting with page one for now due to API limits.
 
                     response = openai.Completion.create(
-                        model="text-davinci-003",
-                        prompt="%=========\n==========:%"%(prompt, full_text),
+                        model="text-davinci-002",
+                        prompt="%\n=========\n%==========:"%(prompt, full_text),
                         temperature=0.7,
                         max_tokens=1000,
                         top_p=1,
@@ -67,18 +67,18 @@ class GPTPlay(AddOn):
                     print(response.choices[0].text)
                     results = response.choices[0].text
    
-                    try:
-                        response = results
+#                    try:
+#                        response = results
 #                        response = results.split("Result: ")[-1]
-                    except:
-                        print("Extracting results failed.")
+#                    except:
+#                        print("Extracting results failed.")
                         
                     writer.writerow(
                         [
                             document.title,
                             document.canonical_url,
                             full_text,
-                            response
+                            results
                         ]
                     )
 #                    if value: come back to allowing saving as a tag
