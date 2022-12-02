@@ -65,7 +65,7 @@ class GPTPlay(AddOn):
                     print(submission)
                     response = openai.Completion.create(
                         model="text-davinci-002",
-                        prompt=submission
+                        prompt=submission,
                         temperature=0.7,
                         max_tokens=1000,
                         top_p=1,
