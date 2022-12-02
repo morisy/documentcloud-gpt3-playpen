@@ -33,7 +33,7 @@ class GPTPlay(AddOn):
             writer.writerow(
                 ["document_title", "url", "text", "output"]
             )
-            prompt = self.data.get("prompt").translate(str.maketrans({"-":  r"\-",
+            user_input = self.data.get("prompt").translate(str.maketrans({"-":  r"\-",
                                           "]":  r"\]",
                                           "\\": r"\\",
                                           "^":  r"\^",
@@ -61,7 +61,7 @@ class GPTPlay(AddOn):
                                           "$":  r"\$",
                                           "*":  r"\*",
                                           ".":  r"\."})) 
-                    submission = "%\n=========\n%=========="%(prompt, full_text)
+                    submission="%\n=========\n%=========="%(user_input, full_text)
                     print(submission)
                     response = openai.Completion.create(
                         model="text-davinci-002",
