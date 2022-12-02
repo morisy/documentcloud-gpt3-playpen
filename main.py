@@ -33,14 +33,16 @@ class GPTPlay(AddOn):
             writer.writerow(
                 ["document_title", "url", "text", "output"]
             )
-            
+            print("Starting the cleaning of the prompt.")
             prompt = self.data.get("prompt").translate(str.maketrans({"-":  r"\-",
                                           "]":  r"\]",
                                           "\\": r"\\",
                                           "^":  r"\^",
                                           "$":  r"\$",
                                           "*":  r"\*",
-                                          ".":  r"\."}))            
+                                          ".":  r"\."})) 
+            print("Cleaned prompt:")
+            print(prompt)
             self.set_message(f"Working on analyzing {str(len(self.documents))} documents.")
             
 #            try:
@@ -50,10 +52,11 @@ class GPTPlay(AddOn):
 #                    self.set_message("Preparing to generate a CSV.")
             
             for doc_id in documents:
+                print("Beginning document iteration.")
                 try:
                     document = self.client.documents.get(doc_id)
                     full_text = document.get_page_text(1) # Just starting with page one for now due to API limits.
-
+                    
                     response = openai.Completion.create(
                         model="text-davinci-002",
                         prompt="%\n=========\n%==========:"%(prompt, full_text),
@@ -63,7 +66,7 @@ class GPTPlay(AddOn):
                         frequency_penalty=0,
                         presence_penalty=0
                         )
-
+                    print("trying to print OpenAI raw response")
                     print(response.choices[0].text)
                     results = response.choices[0].text
    
