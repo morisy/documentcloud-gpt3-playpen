@@ -53,8 +53,15 @@ class GPTPlay(AddOn):
                 print("Beginning document iteration.")
                 try:
                     document = self.client.documents.get(doc_id)
-                    full_text = document.get_page_text(1) # Just starting with page one for now due to API limits.
-                    print("appear to have gotten full page text, trying to print."
+#                    full_text = document.get_page_text(1) # Just starting with page one for now due to API limits.
+                    full_text = document.get_page_text(1).translate(str.maketrans({"-":  r"\-",
+                                          "]":  r"\]",
+                                          "\\": r"\\",
+                                          "^":  r"\^",
+                                          "$":  r"\$",
+                                          "*":  r"\*",
+                                          ".":  r"\."})) 
+                    print("appear to have gotten full page text, trying to print.")
                     print(full_text)
                     response = openai.Completion.create(
                         model="text-davinci-002",
