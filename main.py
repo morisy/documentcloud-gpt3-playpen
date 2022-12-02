@@ -33,7 +33,6 @@ class GPTPlay(AddOn):
             writer.writerow(
                 ["document_title", "url", "text", "output"]
             )
-            print("Starting the cleaning of the prompt.")
             prompt = self.data.get("prompt").translate(str.maketrans({"-":  r"\-",
                                           "]":  r"\]",
                                           "\\": r"\\",
@@ -41,8 +40,7 @@ class GPTPlay(AddOn):
                                           "$":  r"\$",
                                           "*":  r"\*",
                                           ".":  r"\."})) 
-            print("Cleaned prompt:")
-            print(prompt)
+
             self.set_message(f"Working on analyzing {str(len(self.documents))} documents.")
             
 #            try:
@@ -56,10 +54,10 @@ class GPTPlay(AddOn):
                 try:
                     document = self.client.documents.get(doc_id)
                     full_text = document.get_page_text(1) # Just starting with page one for now due to API limits.
-                    
+                    print(full_text)
                     response = openai.Completion.create(
                         model="text-davinci-002",
-                        prompt="%\n=========\n%==========:"%(prompt, full_text),
+                        prompt="%\n=========\n%=========="%(prompt, full_text),
                         temperature=0.7,
                         max_tokens=1000,
                         top_p=1,
