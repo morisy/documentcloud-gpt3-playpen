@@ -54,6 +54,7 @@ class GPTPlay(AddOn):
                 try:
                     document = self.client.documents.get(doc_id)
                     full_text = document.get_page_text(1) # Just starting with page one for now due to API limits.
+                    print("appear to have gotten full page text, trying to print."
                     print(full_text)
                     response = openai.Completion.create(
                         model="text-davinci-002",
