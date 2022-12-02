@@ -61,11 +61,11 @@ class GPTPlay(AddOn):
                                           "$":  r"\$",
                                           "*":  r"\*",
                                           ".":  r"\."})) 
-                    print("appear to have gotten full page text, trying to print.")
-                    print(full_text)
+                    submission = "%\n=========\n%=========="%(prompt, full_text)
+                    print(submission)
                     response = openai.Completion.create(
                         model="text-davinci-002",
-                        prompt="%\n=========\n%=========="%(prompt, full_text),
+                        prompt=submission
                         temperature=0.7,
                         max_tokens=1000,
                         top_p=1,
