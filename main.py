@@ -48,7 +48,7 @@ class GPTPlay(AddOn):
                                               ".":  r"\."})) 
                         submission="%s\n=========\n%s=========="%(user_input, full_text)
                         response = openai.Completion.create(
-                            model="text-davinci-002",
+                            model="text-davinci-003",
                             prompt=submission,
                             temperature=0.7,
                             max_tokens=1000,
