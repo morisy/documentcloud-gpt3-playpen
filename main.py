@@ -83,14 +83,7 @@ class GPTPlay(AddOn):
 #                    except:
 #                        print("Extracting results failed.")
                         
-                    writer.writerow(
-                        [
-                            document.title,
-                            document.canonical_url,
-                            full_text,
-                            results
-                        ]
-                    )
+                    writer.writerow([document.title, document.canonical_url, full_text, results])
                         
                 except:
                     print("Error, moving on to the next item.")
