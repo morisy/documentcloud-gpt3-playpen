@@ -59,7 +59,7 @@ class GPTPlay(AddOn):
                         results = response.choices[0].text
 #                        print(results)
                         writer.writerow(
-                        ["document_title", "url", "text", "output"]
+                        [document.title, "url", "text", "output"]
                         )
                         writer.writerow([document.title, document.canonical_url, full_text, results])
 
