@@ -75,7 +75,8 @@ class GPTPlay(AddOn):
                     print("trying to print OpenAI raw response")
                     print(response.choices[0].text)
                     results = response.choices[0].text
-   
+                    print(results)
+
 #                    try:
 #                        response = results
 #                        response = results.split("Result: ")[-1]
@@ -90,7 +91,6 @@ class GPTPlay(AddOn):
                             results
                         ]
                     )
-#                    if value: come back to allowing saving as a tag
                         
                 except:
                     print("Error, moving on to the next item.")
