@@ -65,8 +65,8 @@ class GPTPlay(AddOn):
                     except:
                         print("Error, moving on to the next item.")
                 self.upload_file(file_)
-            else:
-                self.set_message("It looks like no documents were selected. Search for some or select them and run again.")
+        else:
+            self.set_message("It looks like no documents were selected. Search for some or select them and run again.")
 
 
 
