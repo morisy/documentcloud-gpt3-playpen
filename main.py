@@ -34,7 +34,10 @@ class GPTPlay(AddOn):
                                               "$":  r"\$",
                                               "*":  r"\*",
                                               ".":  r"\."})) 
-
+                if self.data.get("model"):
+                    gpt_model=self.data.get("model")
+                else:
+                    gpt_model="text-davinci-003"
                 for document in self.get_documents():
                     print("Beginning document iteration.")
                     try:
@@ -48,7 +51,7 @@ class GPTPlay(AddOn):
                                               ".":  r"\."})) 
                         submission="%s\n=========\n%s=========="%(user_input, full_text)
                         response = openai.Completion.create(
-                            model="text-davinci-003",
+                            model=gpt_model,
                             prompt=submission,
                             temperature=0.7,
                             max_tokens=1000,
@@ -61,8 +64,10 @@ class GPTPlay(AddOn):
                         [document.title, document.canonical_url, "full text says what", "false results"]
                         )
                         writer.writerow(
-                        [document.title, document.canonical_url, "full text says what", results]
+                        [document.title, document.canonical_url, document.get_page_text(1), results]
                         )
+                        if self.data.get("value"):
+                            document.data[self.data.get("value")] = [str(results)]
 
                     except:
                         print("Error, moving on to the next item.")
