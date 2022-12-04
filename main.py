@@ -58,16 +58,8 @@ class GPTPlay(AddOn):
                             )
                         results = response.choices[0].text
                         writer.writerow(
-                        [document.title, "url", "text", "output"]
-                        )
                         writer.writerow(
-                        [document.title, document.canonical_url, "text", "output"]
-                        )
-                        writer.writerow(
-                        [document.title, document.canonical_url, full_text, "output"]
-                        )
-                        writer.writerow(
-                        [document.title, document.canonical_url, full_text, results]
+                        [document.title, document.canonical_url, "full text says what", results]
                         )
 
                     except:
