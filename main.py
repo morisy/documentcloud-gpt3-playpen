@@ -57,11 +57,18 @@ class GPTPlay(AddOn):
                             presence_penalty=0
                             )
                         results = response.choices[0].text
-#                        print(results)
                         writer.writerow(
                         [document.title, "url", "text", "output"]
                         )
-                        writer.writerow([document.title, document.canonical_url, full_text, results])
+                        writer.writerow(
+                        [document.title, document.canonical_url, "text", "output"]
+                        )
+                        writer.writerow(
+                        [document.title, document.canonical_url, full_text, "output"]
+                        )
+                        writer.writerow(
+                        [document.title, document.canonical_url, full_text, results]
+                        )
 
                     except:
                         print("Error, moving on to the next item.")
