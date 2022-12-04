@@ -1,6 +1,6 @@
 title: GPT-3 Playground
 description: >-
-  Describe your investigation and this will use GPT-3 to try and assess if a given document is relevant or irrelevant. Please limit to a few dozen selections at a time.
+  Note that this plugin costs approximate one cent for every three documents analyzed, depending on the length and complexity of the prompt and documents. Give this a full prompt that you would pass into GPT-3 and it will run it against your selected documents, one at a time. Only looks at the first page of a document currently.
 type: object
 # How does this add-on accept documents
 # If more than one type is specified, the user will be prompted to choose one
@@ -10,8 +10,8 @@ documents:
 # Properties can just be blank if you do not need any input data
 properties:
   # the key is the name of the variable that will be returned to your code
-  investigation:
+  prompt:
     # the title is what will be shown as the form label
-    title: Investigation
+    title: Give a GPT-3 style prompt
     # a string is text
     type: string
