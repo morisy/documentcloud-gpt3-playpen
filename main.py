@@ -22,6 +22,7 @@ class GPTPlay(AddOn):
                 documents.append(str(document.id))
         
         if self.get_documents(): # Check to make sure there are documents:
+            print("Got Documents!")
             with open("compared_docs.csv", "w+") as file_:
                 writer = csv.writer(file_)
                 writer.writerow(
@@ -34,8 +35,6 @@ class GPTPlay(AddOn):
                                               "$":  r"\$",
                                               "*":  r"\*",
                                               ".":  r"\."})) 
-
-                self.set_message(f"Working on analyzing {str(len(self.documents))} documents.")
 
                 for document in self.get_documents():
                     print("Beginning document iteration.")
