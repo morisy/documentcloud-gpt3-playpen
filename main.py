@@ -22,7 +22,6 @@ class GPTPlay(AddOn):
                 documents.append(str(document.id))
         
         if self.get_documents(): # Check to make sure there are documents:
-            print("Got Documents!")
             with open("compared_docs.csv", "w+") as file_:
                 writer = csv.writer(file_)
                 writer.writerow(
@@ -58,8 +57,10 @@ class GPTPlay(AddOn):
                             presence_penalty=0
                             )
                         results = response.choices[0].text
-                        print(results)
-                        writer.writerow([document.title, document.canonical_url, "full text goes here", "the answer"])
+#                        print(results)
+                        writer.writerow(
+                        ["document_title", "url", "text", "output"]
+                        )
                         writer.writerow([document.title, document.canonical_url, full_text, results])
 
                     except:
