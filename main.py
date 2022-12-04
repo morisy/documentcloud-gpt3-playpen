@@ -58,6 +58,8 @@ class GPTPlay(AddOn):
                             )
                         results = response.choices[0].text
                         writer.writerow(
+                        [document.title, document.canonical_url, "full text says what", "false results"]
+                        )
                         writer.writerow(
                         [document.title, document.canonical_url, "full text says what", results]
                         )
