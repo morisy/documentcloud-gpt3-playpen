@@ -15,3 +15,15 @@ properties:
     title: Give a GPT-3 style prompt
     # a string is text
     type: string
+  # the key is the name of the variable that will be returned to your code
+  gpt_model:
+    # the title is what will be shown as the form label
+    title: Give a GPT-3 style prompt
+    # a string is text
+    type: string
+  # the key is the name of the variable that will be returned to your code
+  value:
+    # the title is what will be shown as the form label
+    title: Give a GPT-3 style prompt
+    # a string is text
+    type: string
