@@ -25,7 +25,7 @@ class GPTPlay(AddOn):
             with open("compared_docs.csv", "w+") as file_:
                 writer = csv.writer(file_)
                 writer.writerow(
-                    ["document_title", "url", "text", "output"]
+                    ["document_title", "url", "output"]
                 )
                 user_input = self.data.get("prompt").translate(str.maketrans({"-":  r"\-",
                                               "]":  r"\]",
@@ -61,7 +61,7 @@ class GPTPlay(AddOn):
                             )
                         results = response.choices[0].text
                         writer.writerow(
-                        [document.title, document.canonical_url, document.get_page_text(1), results]
+                        [document.title, document.canonical_url, results]
                         )
                         if self.data.get("value"):
                             try: # should add a proper permission check here.
