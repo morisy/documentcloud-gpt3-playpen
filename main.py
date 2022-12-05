@@ -70,6 +70,8 @@ class GPTPlay(AddOn):
                             try: # should add a proper permission check here.
                                 document.data[self.data.get("value")] = [str(results)]
                                 document.save()
+                            except:
+                                print("Saving the value did not work")
                     except:
                         print("Error, moving on to the next item.")
                 self.upload_file(file_)
