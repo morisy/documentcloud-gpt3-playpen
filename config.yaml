@@ -11,23 +11,16 @@ documents:
   - selected
 # Properties can just be blank if you do not need any input data
 properties:
-  # the key is the name of the variable that will be returned to your code
-  value:
-    # the title is what will be shown as the form label
-    title: If you'd like to save the output as a key value pair, list it here.
-    # a string is text
-    type: string
-  # the key is the name of the variable that will be returned to your code
-  model:
-    # the title is what will be shown as the form label
-    title: GPT Model you'd like to use. (Optional. Leave blank if you're not sure)
-    # a string is text
-    type: string
   prompt:
-    # the title is what will be shown as the form label
     title: Give a GPT-3 style prompt
-    # a string is text
     type: string
+  value:
+    title: Put a tag here if you'd like to save the results as a key value pair.
+    type: string
+  model:
+    title: GPT Model you'd like to use. (Optional. Leave blank if you're not sure)
+    type: string
+
   # the key is the name of the variable that will be returned to your code
 
 eventOptions:
