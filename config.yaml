@@ -16,7 +16,7 @@ properties:
     # a string is text
     type: string
   # the key is the name of the variable that will be returned to your code
-  gpt_model:
+  model:
     # the title is what will be shown as the form label
     title: GPT Model you'd like to use. (Optional. Leave blank if you're not sure)
     # a string is text
