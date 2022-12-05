@@ -39,7 +39,7 @@ class GPTPlay(AddOn):
                 else:
                     gpt_model="text-davinci-003"
                 for document in self.get_documents():
-                    print("Beginning document iteration.")
+                    self.set_message("Analyzing document %s."%document.title)
                     try:
                         # Just starting with page one for now due to API limits.
                         full_text = document.get_page_text(1).translate(str.maketrans({"-":  r"\-", 
@@ -61,8 +61,6 @@ class GPTPlay(AddOn):
                             )
                         results = response.choices[0].text
                         writer.writerow(
-                        [document.title, document.canonical_url, "full text says what", "false results"]
-                        )
                         writer.writerow(
                         [document.title, document.canonical_url, document.get_page_text(1), results]
                         )
@@ -77,8 +75,6 @@ class GPTPlay(AddOn):
                 self.upload_file(file_)
         else:
             self.set_message("It looks like no documents were selected. Search for some or select them and run again.")
-
-
-
+                            
 if __name__ == "__main__":
     GPTPlay().main()
