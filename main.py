@@ -61,7 +61,6 @@ class GPTPlay(AddOn):
                             )
                         results = response.choices[0].text
                         writer.writerow(
-                        writer.writerow(
                         [document.title, document.canonical_url, document.get_page_text(1), results]
                         )
                         if self.data.get("value"):
