@@ -18,12 +18,12 @@ properties:
   # the key is the name of the variable that will be returned to your code
   gpt_model:
     # the title is what will be shown as the form label
-    title: Give a GPT-3 style prompt
+    title: GPT Model you'd like to use. (Optional. Leave blank if you're not sure)
     # a string is text
     type: string
   # the key is the name of the variable that will be returned to your code
   value:
     # the title is what will be shown as the form label
-    title: Give a GPT-3 style prompt
+    title: If you'd like to save the output as a key value pair, list it here.
     # a string is text
     type: string
