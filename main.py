@@ -67,7 +67,9 @@ class GPTPlay(AddOn):
                         [document.title, document.canonical_url, document.get_page_text(1), results]
                         )
                         if self.data.get("value"):
-                            document.data[self.data.get("value")] = [str(results)]
+                            try: # should add a proper permission check here.
+                                document.data[self.data.get("value")] = [str(results)]
+                                document.save()
 
                     except:
                         print("Error, moving on to the next item.")
