@@ -49,7 +49,7 @@ class GPTPlay(AddOn):
                                               "$":  r"\$",
                                               "*":  r"\*",
                                               ".":  r"\."})) 
-                        submission="%s\n=========\n%s=========="%(user_input, full_text)
+                        submission="Assignment:\n=============\n%s\n\nDocument Text:\n=========\n%s\n\n\nAnswer:\n==========\n"%(user_input, full_text)
                         response = openai.Completion.create(
                             model=gpt_model,
                             prompt=submission,
