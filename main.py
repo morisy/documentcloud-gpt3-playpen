@@ -12,6 +12,7 @@ from documentcloud.addon import AddOn
 
 openai.api_key = os.environ["TOKEN"]
 
+DOCUMENTS_PER_CREDIT = 450
 ESCAPE_TABLE = str.maketrans(
     {
         "-": r"\-",
@@ -26,20 +27,43 @@ ESCAPE_TABLE = str.maketrans(
 
 
 class GPTPlay(AddOn):
-    def main(self):
+    def validate(self):
+        """Validate that we can run the analysis"""
 
         if self.get_document_count() == 0:
             self.set_message(
                 "It looks like no documents were selected. Search for some or "
                 "select them and run again."
             )
+            return False
+        elif not self.org_id:
+            self.set_message("No organization to charge.")
+            return False
+        else:
+            # charging one credit per 450 documents, rounded up
+            ai_credits = math.ceil(self.get_document_count() / DOCUMENTS_PER_CREDIT)
+            resp = self.client.post(
+                f"organizations/{self.org_id}/ai_credits/",
+                json={"ai_credits": ai_credits},
+                timeout=30,
+            )
+            if resp.status_code != 200:
+                self.set_message("Error charging AI credits.")
+                return False
+
+        return True
+
+    def main(self):
+
+        if not self.validate():
+            # if not validated, return immediately
             return
 
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
             writer.writerow(["document_title", "url", "output"])
             user_input = self.data["prompt"].translate(ESCAPE_TABLE)
-            gpt_model = self.data.get("model", "text-davinci-003"
+            gpt_model = self.data.get("model", "text-davinci-003")
             for document in self.get_documents():
                 self.set_message(f"Analyzing document {document.title}.")
                 try:
