@@ -11,7 +11,7 @@ description: >-
   The prompt refers to the user input as the "Assignment," the document's text
   as "Document Text", and GPT-3's generated response as the "Answer," which can
   be helpful when defining your prompt.
-  We'd love your feedback and ideas — drop a note to info at documentcloud.org or join
+  We'd love your feedback and ideas — drop a note to info at documentcloud dot org or join
   us in the News Nerdery Slack in the #proj-documentcloud channel.
 type: object
 documents:
