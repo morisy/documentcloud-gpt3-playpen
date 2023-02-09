@@ -3,6 +3,8 @@ description: >-
   Use GPT3 to help analyze your documents, right within DocumentCloud. Note
   that this Add-On consumes AI credits, which you can get via a Pro or Organization
   account.
+  
+  
   Note that this plugin uses 1 credit per 450 documents analyzed, rounded up.
   Give this a full prompt that you would pass into GPT-3 and it will run it
   against your selected documents, one at a time. The plug in only looks at the first page
@@ -11,6 +13,8 @@ description: >-
   The prompt refers to the user input as the "Assignment," the document's text
   as "Document Text", and GPT-3's generated response as the "Answer," which can
   be helpful when defining your prompt.
+  
+  
   We'd love your feedback and ideas — drop a note to info at documentcloud dot org or join
   us in the News Nerdery Slack in the #proj-documentcloud channel.
 type: object
@@ -30,4 +34,3 @@ properties:
 
 required:
   - prompt
-  
