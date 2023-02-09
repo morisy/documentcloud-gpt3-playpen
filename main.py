@@ -3,9 +3,8 @@ GPT-3 Implementation as a DocumentCloud Add-on
 """
 
 import csv
+import math
 import os
-import re
-import time
 
 import openai
 from documentcloud.addon import AddOn
