@@ -44,7 +44,6 @@ class GPTPlay(AddOn):
             resp = self.client.post(
                 f"organizations/{self.org_id}/ai_credits/",
                 json={"ai_credits": ai_credits},
-                timeout=30,
             )
             if resp.status_code != 200:
                 self.set_message("Error charging AI credits.")
