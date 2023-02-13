@@ -66,7 +66,7 @@ class GPTPlay(AddOn):
                 self.set_message(f"Analyzing document {document.title}.")
                 try:
                     # Just starting with page one for now due to API limits.
-                    full_text = document.get_page_text(1).translate(ESCAPE_TABLE)
+                    full_text = document.full_text.translate(ESCAPE_TABLE)[:12000] # Limiting to first 10000 characters from entire document
                     submission = (
                         f"Assignment:\n=============\n{user_input}\n\n"
                         f"Document Text:\n=========\n{full_text}\n\n\n"
