@@ -5,7 +5,7 @@ description: >-
   account.
   
   
-  Note that this plugin uses 1 credit per 450 documents analyzed, rounded up.
+  Note that this plugin uses *1 credit per 450 documents analyzed*, rounded up.
   Give this a full prompt that you would pass into GPT-3 and it will run it
   against your selected documents, one at a time. The plug in only looks at the first page
   of a document currently. If you define a custom model, [use the naming
@@ -26,10 +26,7 @@ properties:
     title: Give a GPT-3 style prompt
     type: string
   value:
-    title: Put a tag here if you'd like to save the results as a key value pair.
-    type: string
-  model:
-    title: GPT Model you'd like to use. (Optional. Leave blank if you're not sure)
+    title: Put a tag here if you'd like to save the results as a key value pair on the document.
     type: string
 
 required:
