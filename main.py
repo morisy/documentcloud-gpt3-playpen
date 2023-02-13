@@ -54,7 +54,7 @@ class GPTPlay(AddOn):
                             model=gpt_model,
                             prompt=submission,
                             temperature=0.7,
-                            max_tokens=1000,
+                            max_tokens=4000,
                             top_p=1,
                             frequency_penalty=0,
                             presence_penalty=0
