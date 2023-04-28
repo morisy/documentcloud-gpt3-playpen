@@ -11,7 +11,7 @@ from documentcloud.addon import AddOn
 
 openai.api_key = os.environ["TOKEN"]
 
-DOCUMENTS_PER_CREDIT = 450
+CREDITS_PER_DOCUMENT = 14
 ESCAPE_TABLE = str.maketrans(
     {
         "-": r"\-",
@@ -39,8 +39,7 @@ class GPTPlay(AddOn):
             self.set_message("No organization to charge.")
             return False
         else:
-            # charging one credit per 450 documents, rounded up
-            ai_credits = math.ceil(self.get_document_count() / DOCUMENTS_PER_CREDIT)
+            ai_credits = self.get_document_count() * CREDITS_PER_DOCUMENT
             resp = self.client.post(
                 f"organizations/{self.org_id}/ai_credits/",
                 json={"ai_credits": ai_credits},
