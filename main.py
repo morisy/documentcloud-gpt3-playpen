@@ -38,6 +38,7 @@ class GPTPlay(AddOn):
         elif not self.org_id:
             self.set_message("No organization to charge.")
             return False
+        """
         else:
             ai_credits = self.get_document_count() * CREDITS_PER_DOCUMENT
             resp = self.client.post(
@@ -47,7 +48,7 @@ class GPTPlay(AddOn):
             if resp.status_code != 200:
                 self.set_message("Error charging AI credits.")
                 return False
-
+"""
         return True
 
     def main(self):
