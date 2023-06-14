@@ -31,3 +31,5 @@ properties:
 
 required:
   - prompt
+categories:
+  - ai
