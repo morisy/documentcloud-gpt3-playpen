@@ -38,17 +38,18 @@ class GPTPlay(AddOn):
         elif not self.org_id:
             self.set_message("No organization to charge.")
             return False
-        """
         else:
             ai_credits = self.get_document_count() * CREDITS_PER_DOCUMENT
             resp = self.client.post(
                 f"organizations/{self.org_id}/ai_credits/",
-                json={"ai_credits": ai_credits},
+                json={
+                    "ai_credits": ai_credits,
+                    "note": f"GPT-3 Add-On for {self.get_document_count()} documents",
+                },
             )
             if resp.status_code != 200:
                 self.set_message("Error charging AI credits.")
                 return False
-"""
         return True
 
     def main(self):
@@ -66,12 +67,14 @@ class GPTPlay(AddOn):
                 self.set_message(f"Analyzing document {document.title}.")
                 try:
                     # Just starting with page one for now due to API limits.
-                    full_text = document.full_text.translate(ESCAPE_TABLE)[:12000] # Limiting to first 10000 characters from entire document
+                    full_text = document.full_text.translate(ESCAPE_TABLE)[
+                        :12000
+                    ]  # Limiting to first 10000 characters from entire document
                     submission = (
                         f"Assignment:\n=============\n{user_input}\n\n"
                         f"Document Text:\n=========\n{full_text}\n\n\n"
                         "Answer:\n==========\n"
-                        )
+                    )
                     response = openai.Completion.create(
                         model=gpt_model,
                         prompt=submission,
