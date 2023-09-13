@@ -29,7 +29,7 @@ class GPTPlay(AddOn):
     def validate(self):
         """Validate that we can run the analysis"""
 
-        if self.get_document_count() == 0:
+        if self.get_document_count() is None:
             self.set_message(
                 "It looks like no documents were selected. Search for some or "
                 "select them and run again."
