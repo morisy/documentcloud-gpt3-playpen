@@ -5,7 +5,7 @@ description: |
   account.
   
   
-  **Note**: This plugin uses 14 credits per document analyzed.
+  **Note**: This Add-On uses 14 credits per document analyzed.
 
   Give this a full prompt that you would pass into GPT-3 and it will run it
   against your selected documents, one at a time. The plug in only looks at the first page
