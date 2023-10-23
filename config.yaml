@@ -5,7 +5,22 @@ description: >-
   account.
   
   
-  Note that this plugin uses **14 credits per document analyzed**.
+  **Note**: This plugin uses 14 credits per document analyzed.
+
+  Give this a full prompt that you would pass into GPT-3 and it will run it
+  against your selected documents, one at a time. The plug in only looks at the first page
+  of a document currently. If you define a custom model, [use the naming
+  conventions from this section](https://beta.openai.com/docs/models/gpt-3).
+  The prompt refers to the user input as the "Assignment," the document's text
+  as "Document Text", and GPT-3's generated response as the "Answer," which can
+  be helpful when defining your prompt.
+  
+  
+  We'd love your feedback and ideas — drop a note to info at documentcloud dot org or join
+  us in the News Nerdery Slack in the #proj-documentcloud channel.
+instructions: |
+  *Note**: This plugin uses 14 credits per document analyzed.
+
   Give this a full prompt that you would pass into GPT-3 and it will run it
   against your selected documents, one at a time. The plug in only looks at the first page
   of a document currently. If you define a custom model, [use the naming
