@@ -36,4 +36,6 @@ required:
 categories:
   - ai
   - premium
-cost: 14 credits per document
+cost:
+  amount: 14
+  unit: document
