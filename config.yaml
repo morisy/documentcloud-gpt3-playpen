@@ -37,5 +37,6 @@ categories:
   - ai
   - premium
 cost:
-  amount: 14
+  price: 14
+  amount: 1
   unit: document
