@@ -40,13 +40,7 @@ class GPTPlay(AddOn):
             return False
         else:
             ai_credits = self.get_document_count() * CREDITS_PER_DOCUMENT
-            resp = self.client.post(
-                f"organizations/{self.org_id}/ai_credits/",
-                json={
-                    "ai_credits": ai_credits,
-                    "note": f"GPT-3 Add-On for {self.get_document_count()} documents",
-                },
-            )
+            self.charge_credits(ai_credits)
             if resp.status_code != 200:
                 self.set_message("Error charging AI credits.")
                 return False
