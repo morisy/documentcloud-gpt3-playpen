@@ -40,9 +40,9 @@ class GPTPlay(AddOn):
             return False
         else:
             ai_credits = self.get_document_count() * CREDITS_PER_DOCUMENT
-            self.charge_credits(ai_credits)
-            if resp.status_code != 200:
-                self.set_message("Error charging AI credits.")
+            try:
+                self.charge_credits(ai_credits)
+            except ValueError:
                 return False
         return True
 
