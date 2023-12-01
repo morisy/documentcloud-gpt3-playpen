@@ -5,12 +5,8 @@ description: |
   account.
 
   Give this a full prompt that you would pass into GPT-3 and it will run it
-  against your selected documents, one at a time. The plug in only looks at the first page
-  of a document currently. If you define a custom model, [use the naming
-  conventions from this section](https://beta.openai.com/docs/models/gpt-3).
-  The prompt refers to the user input as the "Assignment," the document's text
-  as "Document Text", and GPT-3's generated response as the "Answer," which can
-  be helpful when defining your prompt.
+  against your selected documents, one at a time. The Add-On currently looks at 
+  the first 12,000 characters in each document, which is about six pages of text on average.
   
   We'd love your feedback and ideas — drop a note to info at documentcloud dot org or join
   us in the News Nerdery Slack in the #proj-documentcloud channel.
@@ -24,7 +20,7 @@ properties:
     title: Give a GPT-3 style prompt
     type: string
   value:
-    title: Put a tag here if you'd like to save the results as a key value pair on the document.
+    title: Put a tag here if you would like to save the results as a key value pair on the document.
     type: string
 
 required:
