@@ -17,8 +17,8 @@ description: |
 instructions: ''
 type: object
 documents:
-  - query
   - selected
+  - query
 properties:
   prompt:
     title: Give a GPT-3 style prompt
