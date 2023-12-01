@@ -86,8 +86,8 @@ class GPTPlay(AddOn):
                             document.save()
                         except:
                             print("Saving the value did not work")
-                except:
-                    print("Error, moving on to the next item.")
+                except Exception as e:
+                    print(f"Error: {e}")
 
             self.upload_file(file_)
 
