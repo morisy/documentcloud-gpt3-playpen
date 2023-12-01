@@ -6,7 +6,7 @@ description: |
 
   Give this a full prompt that you would pass into GPT-3 and it will run it
   against your selected documents, one at a time. The Add-On currently looks at 
-  the first 12,000 characters in each document, which is about six pages of text on average.
+  the first 12,000 characters in each document, which is about 5 pages of text on average.
   
   We'd love your feedback and ideas — drop a note to info at documentcloud dot org or join
   us in the News Nerdery Slack in the #proj-documentcloud channel.
