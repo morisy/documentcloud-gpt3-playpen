@@ -6,10 +6,12 @@ import csv
 import math
 import os
 
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key=os.environ["TOKEN"])
 from documentcloud.addon import AddOn
 
-openai.api_key = os.environ["TOKEN"]
+
 
 CREDITS_PER_DOCUMENT = 14
 ESCAPE_TABLE = str.maketrans(
@@ -69,15 +71,13 @@ class GPTPlay(AddOn):
                         f"Document Text:\n=========\n{full_text}\n\n\n"
                         "Answer:\n==========\n"
                     )
-                    response = openai.Completion.create(
-                        model=gpt_model,
-                        prompt=submission,
-                        temperature=0.7,
-                        max_tokens=1000,
-                        top_p=1,
-                        frequency_penalty=0,
-                        presence_penalty=0,
-                    )
+                    response = client.completions.create(model=gpt_model,
+                    prompt=submission,
+                    temperature=0.7,
+                    max_tokens=1000,
+                    top_p=1,
+                    frequency_penalty=0,
+                    presence_penalty=0)
                     results = response.choices[0].text
                     writer.writerow([document.title, document.canonical_url, results])
                     if self.data.get("value"):
