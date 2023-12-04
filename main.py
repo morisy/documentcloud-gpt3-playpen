@@ -77,7 +77,7 @@ class GPTPlay(AddOn):
     def main(self):
         character_limit = DEFAULT_CHAR_LIMIT
         if self.data.get("limiter"):
-            character_limit = limiter
+            character_limit = self.data.get("limiter")
         # If dry_run is selected, it will calculate the cost of translation. 
         if self.data.get("dry_run"):
             self.dry_run(self.get_documents())
