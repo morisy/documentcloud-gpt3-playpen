@@ -74,8 +74,8 @@ class GPTPlay(AddOn):
                         {"role": "user", "content": submission}
                     ]
                     response = client.chat.completions.create(messages=message, model=gpt_model, temperature=0.7, max_tokens=1000, top_p=1, frequency_penalty=0, presence_penalty=0)
-                    print(type(results))
-
+                    print(type(response))
+                    print(response)
                     """
                     writer.writerow([document.title, document.canonical_url, results])
                     if self.data.get("value"):
