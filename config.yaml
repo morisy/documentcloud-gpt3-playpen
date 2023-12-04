@@ -22,6 +22,10 @@ documents:
   - selected
   - query
 properties:
+  dry_run:
+    title: Dry Run
+    type: boolean
+    description: Select this to calculate the cost of running this prompt, it will not charge you or do anything else.
   prompt:
     title: Give a GPT-3 style prompt
     type: string
