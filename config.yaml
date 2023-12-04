@@ -39,7 +39,8 @@ properties:
   limiter:
     title: Enter a smaller search size (number of characters) if you want to limit the search to only the first X characters. 
     type: numeric
-
+    minimum: 1000
+    maximum: 56000
 required:
   - prompt
 categories:
