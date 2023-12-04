@@ -11,9 +11,8 @@ from openai import OpenAI
 client = OpenAI(api_key=os.environ["TOKEN"])
 from documentcloud.addon import AddOn
 
+DEFAULT_WORDS_PER_PAGE = 300
 
-
-CREDITS_PER_DOCUMENT = 14
 ESCAPE_TABLE = str.maketrans(
     {
         "-": r"\-",
@@ -58,7 +57,7 @@ class GPTPlay(AddOn):
             writer = csv.writer(file_)
             writer.writerow(["document_title", "url", "output"])
             user_input = self.data["prompt"].translate(ESCAPE_TABLE)
-            gpt_model = "text-davinci-003"
+            gpt_model = "gpt-3.5-turbo-1106"
             for document in self.get_documents():
                 self.set_message(f"Analyzing document {document.title}.")
                 try:
@@ -71,8 +70,11 @@ class GPTPlay(AddOn):
                         f"Document Text:\n=========\n{full_text}\n\n\n"
                         "Answer:\n==========\n"
                     )
-                    response = client.completions.create(model=gpt_model,
-                    prompt=submission,
+                    message=[
+                        {"role": "user", "content": submission}
+                    ]
+                    response = client.ChatCompletion.create(model=gpt_model,
+                    prompt=message,
                     temperature=0.7,
                     max_tokens=1000,
                     top_p=1,
