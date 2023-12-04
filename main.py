@@ -74,8 +74,9 @@ class GPTPlay(AddOn):
                         {"role": "user", "content": submission}
                     ]
                     response = client.chat.completions.create(messages=message, model=gpt_model, temperature=0.7, max_tokens=1000, top_p=1, frequency_penalty=0, presence_penalty=0)
-                    results = response.choices[0].message.get('content', '')
+                    print(type(results))
 
+                    """
                     writer.writerow([document.title, document.canonical_url, results])
                     if self.data.get("value"):
                         try:  # should add a proper permission check here.
@@ -83,6 +84,7 @@ class GPTPlay(AddOn):
                             document.save()
                         except:
                             print("Saving the value did not work")
+                    """
                 except Exception as e:
                     print(f"Error: {e}")
 
