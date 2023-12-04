@@ -1,12 +1,18 @@
 title: GPT-3 Playground (Alpha)
 description: |
-  Use GPT3 to help analyze your documents, right within DocumentCloud. Note
-  that this Add-On consumes AI credits, which you can get via a Pro or Organization
-  account.
+  Use GPT3 to help analyze your documents, right within DocumentCloud.
 
   Give this a full prompt that you would pass into GPT-3 and it will run it
-  against your selected documents, one at a time. The Add-On currently looks at 
-  the first 12,000 characters in each document, which is about 5-6 pages of text on average.
+  against your selected documents, one at a time. 
+  
+  The Add-On currently looks at the first 56,000 characters in each document, 
+  which is about the first 35 pages of text if using an average page size of 300 words per page. 
+
+  The Add-On cost is approximately 1 AI credit per page, if your document hovers around 300 words per page.
+  If your document has much more text per page, it may be more costly. 
+  
+  There is a dry-run option that tells you the cost of running the Add-On on your entire set without charging you. 
+  The cost is capped at 35 AI credits per document per run. 
   
   We'd love your feedback and ideas — drop a note to info at documentcloud dot org or join
   us in the News Nerdery Slack in the #proj-documentcloud channel.
@@ -29,6 +35,6 @@ categories:
   - ai
   - premium
 cost:
-  price: 14
+  price: 1
   amount: 1
-  unit: document
+  unit: page
