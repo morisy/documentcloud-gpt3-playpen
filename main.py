@@ -55,7 +55,23 @@ class GPTPlay(AddOn):
                 return False
         return True
 
+    def dry_run(self, documents):
+        for doc in documents:
+            full_text = document.full_text
+            num_characters = len(full_text)
+            num_pages = ceil(num_characters / AVERAGE_CHARS_PER_PAGE)
+            num_pages = max(1,num_pages) # In case there is a 1 page document with no text, we don't error out. 
+            num_pages = min(num_pages, MAX_PAGES)
+            total_num_pages += num_pages
+        cost = total_num_pages
+        self.set_message(f"There are {total_num_pages} standard size pages in this document set. It would cost {cost} AI credits to run your prompt on the set.")
+        sys.exit(0)
+        
     def main(self):
+        # If dry_run is selected, it will calculate the cost of translation. 
+        if self.data.get("dry_run"):
+            self.dry_run(self.get_documents())
+            
         if not self.validate():
             # if not validated, return immediately
             return
