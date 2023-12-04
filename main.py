@@ -8,12 +8,8 @@ import os
 
 from openai import OpenAI
 from documentcloud.addon import AddOn
-import tiktoken 
 
 client = OpenAI(api_key=os.environ["TOKEN"])
-
-encoding = tiktoken.get_encoding("cl100k_base")
-encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
 
 AVERAGE_CHARS_PER_PAGE = 1500
 MAX_PAGES = 40
