@@ -5,14 +5,18 @@ description: |
   Give this a full prompt that you would pass into GPT-3 and it will run it
   against your selected documents, one at a time. 
   
-  The Add-On currently looks at the first 56,000 characters in each document, 
-  which is about the first 35 pages of text if using an average page size of 300 words per page. 
+  The Add-On currently looks at the first 56,000 characters in each document.
+  If using an average page size of 300 words per page or 1750 characters per page, 
+  that is around 30 pages or so. 
 
-  The Add-On cost is approximately 1 AI credit per page, if your document hovers around 300 words per page.
+  The Add-On cost is approximately 1 AI credit per page, if your document has around 1750 characters per page. 
   If your document has much more text per page, it may be more costly. 
   
   There is a dry-run option that tells you the cost of running the Add-On on your entire set without charging you. 
-  The cost is capped at 35 AI credits per document per run. 
+  The cost is capped at 30 AI credits per document per run. 
+
+  If you have large documents but only care about the first 1000 characters in the document, you can set a limiter
+  so that it costs less to run the Add-On. You can set the limit between 1,000 - 56,000 characters. 
   
   We'd love your feedback and ideas — drop a note to info at documentcloud dot org or join
   us in the News Nerdery Slack in the #proj-documentcloud channel.
@@ -32,6 +36,9 @@ properties:
   value:
     title: Put a tag here if you would like to save the results as a key value pair on the document.
     type: string
+  limiter:
+    title: Enter a smaller search size (number of characters) if you want to limit the search to only the first X characters. 
+    type: numeric
 
 required:
   - prompt
