@@ -58,11 +58,10 @@ class GPTPlay(AddOn):
         else:
             character_limit = self.data.get("limiter", DEFAULT_CHAR_LIMIT)
             ai_credit_cost = self.calculate_cost(self.get_documents(), limiter=character_limit)
-        return True
-            try:
-                self.charge_credits(ai_credit_cost)
-            except ValueError:
-                return False
+        try:
+            self.charge_credits(ai_credit_cost)
+        except ValueError:
+            return False
         return True
 
     def dry_run(self, documents):
