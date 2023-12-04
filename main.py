@@ -57,7 +57,7 @@ class GPTPlay(AddOn):
 
     def dry_run(self, documents):
         for doc in documents:
-            full_text = document.full_text
+            full_text = doc.full_text
             num_characters = len(full_text)
             num_pages = ceil(num_characters / AVERAGE_CHARS_PER_PAGE)
             num_pages = max(1,num_pages) # In case there is a 1 page document with no text, we don't error out. 
