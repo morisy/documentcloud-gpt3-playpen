@@ -73,14 +73,9 @@ class GPTPlay(AddOn):
                     message=[
                         {"role": "user", "content": submission}
                     ]
-                    response = client.chat.completions.create(model=gpt_model,
-                    prompt=message,
-                    temperature=0.7,
-                    max_tokens=1000,
-                    top_p=1,
-                    frequency_penalty=0,
-                    presence_penalty=0)
+                    response = client.chat.completions.create(messsages=message, model=gpt_model, temperature=0.7, max_tokens=1000, top_p=1, frequency_penalty=0, presence_penalty=0)
                     results = response.choices[0].text
+                    
                     writer.writerow([document.title, document.canonical_url, results])
                     if self.data.get("value"):
                         try:  # should add a proper permission check here.
