@@ -10,7 +10,7 @@ from openai import OpenAI
 
 client = OpenAI(api_key=os.environ["TOKEN"])
 from documentcloud.addon import AddOn
-
+CREDITS_PER_DOCUMENT = 14
 DEFAULT_WORDS_PER_PAGE = 300
 
 ESCAPE_TABLE = str.maketrans(
