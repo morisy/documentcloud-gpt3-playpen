@@ -5,6 +5,7 @@ GPT-3 Implementation as a DocumentCloud Add-on
 import csv
 import math
 import os
+import sys
 
 from openai import OpenAI
 from documentcloud.addon import AddOn
