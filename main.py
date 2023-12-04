@@ -12,7 +12,7 @@ from documentcloud.addon import AddOn
 client = OpenAI(api_key=os.environ["TOKEN"])
 
 AVERAGE_CHARS_PER_PAGE = 1500
-MAX_PAGES = 40
+MAX_PAGES = 35
 
 ESCAPE_TABLE = str.maketrans(
     {
