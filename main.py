@@ -29,6 +29,20 @@ ESCAPE_TABLE = str.maketrans(
 )
 
 class GPTPlay(AddOn):
+    def calculate_cost(self, documents, limiter=None):
+        total_num_pages = 0
+        for doc in documents:
+            full_text = doc.full_text
+            if limiter:
+                full_text = full_text[:limiter]  # Use limiter if provided
+            num_characters = len(full_text)
+            num_pages = math.ceil(num_characters / AVERAGE_CHARS_PER_PAGE)
+            num_pages = max(1, num_pages)
+            num_pages = min(num_pages, MAX_PAGES)
+            total_num_pages += num_pages
+        cost = total_num_pages
+        return cost
+        
     def validate(self):
         """Validate that we can run the analysis"""
 
@@ -42,15 +56,9 @@ class GPTPlay(AddOn):
             self.set_message("No organization to charge.")
             return False
         else:
-            total_num_pages = 0
-            for document in self.get_documents():
-                full_text = document.full_text
-                num_characters = len(full_text)
-                num_pages = math.ceil(num_characters / AVERAGE_CHARS_PER_PAGE)
-                num_pages = max(1,num_pages) # In case there is a 1 page document with no text, we don't error out. 
-                num_pages = min(num_pages, MAX_PAGES)
-                total_num_pages += num_pages
-            ai_credit_cost = total_num_pages 
+            character_limit = self.data.get("limiter", DEFAULT_CHAR_LIMIT)
+            ai_credit_cost = self.calculate_cost(self.get_documents(), limiter=character_limit)
+        return True
             try:
                 self.charge_credits(ai_credit_cost)
             except ValueError:
@@ -58,23 +66,19 @@ class GPTPlay(AddOn):
         return True
 
     def dry_run(self, documents):
-        total_num_pages = 0
-        for doc in documents:
-            full_text = doc.full_text
-            num_characters = len(full_text)
-            num_pages = math.ceil(num_characters / AVERAGE_CHARS_PER_PAGE)
-            num_pages = max(1,num_pages) # In case there is a 1 page document with no text, we don't error out. 
-            num_pages = min(num_pages, MAX_PAGES)
-            total_num_pages += num_pages
-        cost = total_num_pages
-        self.set_message(f"There are {total_num_pages} standard size pages in this document set. It would cost {cost} AI credits to run your prompt on the set.")
+        character_limit = self.data.get("limiter", DEFAULT_CHAR_LIMIT)
+        cost = self.calculate_cost(documents, limiter=character_limit)
+
+        self.set_message(
+            f"There are {cost} standard size pages in this document set. "
+            f"It would cost {cost} AI credits to run your prompt on the set."
+        )
         sys.exit(0)
         
     def main(self):
         character_limit = DEFAULT_CHAR_LIMIT
         if self.data.get("limiter"):
             character_limit = limiter
-            
         # If dry_run is selected, it will calculate the cost of translation. 
         if self.data.get("dry_run"):
             self.dry_run(self.get_documents())
