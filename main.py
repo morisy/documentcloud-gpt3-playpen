@@ -64,8 +64,8 @@ class GPTPlay(AddOn):
                 try:
                     # Just starting with page one for now due to API limits.
                     full_text = document.full_text.translate(ESCAPE_TABLE)[
-                        :9000
-                    ]  # Limiting to first 9000 characters from entire document
+                        :8000
+                    ]  # Limiting to first 8000 characters from entire document
                     submission = (
                         f"Assignment:\n=============\n{user_input}\n\n"
                         f"Document Text:\n=========\n{full_text}\n\n\n"
