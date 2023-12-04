@@ -44,9 +44,9 @@ class GPTPlay(AddOn):
             for document in self.get_documents():
                 full_text = document.full_text
                 num_characters = len(full_text)
-                num_pages = ceil(num_characters / AVERAGE_CHARS_PER_PAGE)
-                num_pages = max(1,num_pages) # In case there is a 1 page document with no text, we don't error out. 
-                num_pages = min(num_pages, MAX_PAGES)
+                num_pages = math.ceil(num_characters / AVERAGE_CHARS_PER_PAGE)
+                num_pages = math.max(1,num_pages) # In case there is a 1 page document with no text, we don't error out. 
+                num_pages = math.min(num_pages, MAX_PAGES)
                 total_num_pages += num_pages
             ai_credit_cost = total_num_pages 
             try:
@@ -59,9 +59,9 @@ class GPTPlay(AddOn):
         for doc in documents:
             full_text = doc.full_text
             num_characters = len(full_text)
-            num_pages = ceil(num_characters / AVERAGE_CHARS_PER_PAGE)
-            num_pages = max(1,num_pages) # In case there is a 1 page document with no text, we don't error out. 
-            num_pages = min(num_pages, MAX_PAGES)
+            num_pages = math.ceil(num_characters / AVERAGE_CHARS_PER_PAGE)
+            num_pages = math.max(1,num_pages) # In case there is a 1 page document with no text, we don't error out. 
+            num_pages = math.min(num_pages, MAX_PAGES)
             total_num_pages += num_pages
         cost = total_num_pages
         self.set_message(f"There are {total_num_pages} standard size pages in this document set. It would cost {cost} AI credits to run your prompt on the set.")
