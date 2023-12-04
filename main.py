@@ -56,6 +56,7 @@ class GPTPlay(AddOn):
         return True
 
     def dry_run(self, documents):
+        total_num_pages = 0
         for doc in documents:
             full_text = doc.full_text
             num_characters = len(full_text)
