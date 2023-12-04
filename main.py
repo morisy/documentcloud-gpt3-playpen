@@ -73,7 +73,7 @@ class GPTPlay(AddOn):
                     message=[
                         {"role": "user", "content": submission}
                     ]
-                    response = client.ChatCompletion.create(model=gpt_model,
+                    response = client.chat.completions.create(model=gpt_model,
                     prompt=message,
                     temperature=0.7,
                     max_tokens=1000,
