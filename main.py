@@ -7,11 +7,16 @@ import math
 import os
 
 from openai import OpenAI
+from documentcloud.addon import AddOn
+import tiktoken 
 
 client = OpenAI(api_key=os.environ["TOKEN"])
-from documentcloud.addon import AddOn
-CREDITS_PER_DOCUMENT = 14
-DEFAULT_WORDS_PER_PAGE = 300
+
+encoding = tiktoken.get_encoding("cl100k_base")
+encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
+
+AVERAGE_CHARS_PER_PAGE = 1500
+MAX_PAGES = 40
 
 ESCAPE_TABLE = str.maketrans(
     {
@@ -24,7 +29,6 @@ ESCAPE_TABLE = str.maketrans(
         ".": r"\.",
     }
 )
-
 
 class GPTPlay(AddOn):
     def validate(self):
@@ -40,19 +44,25 @@ class GPTPlay(AddOn):
             self.set_message("No organization to charge.")
             return False
         else:
-            ai_credits = self.get_document_count() * CREDITS_PER_DOCUMENT
+            total_num_pages = 0
+            for document in self.get_documents():
+                full_text = document.full_text
+                num_characters = len(full_text)
+                num_pages = ceil(num_characters / AVERAGE_CHARS_PER_PAGE)
+                num_pages = max(1,num_pages) # In case there is a 1 page document with no text, we don't error out. 
+                num_pages = min(num_pages, MAX_PAGES)
+                total_num_pages += num_pages
+            ai_credit_cost = total_num_pages 
             try:
-                self.charge_credits(ai_credits)
+                self.charge_credits(ai_credit_cost)
             except ValueError:
                 return False
         return True
 
     def main(self):
-
         if not self.validate():
             # if not validated, return immediately
             return
-
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
             writer.writerow(["document_title", "url", "output"])
@@ -63,15 +73,15 @@ class GPTPlay(AddOn):
                 try:
                     # Just starting with page one for now due to API limits.
                     full_text = document.full_text.translate(ESCAPE_TABLE)[
-                        :8000
-                    ]  # Limiting to first 8000 characters from entire document
+                        :56000
+                    ]  # Limiting to first 56k characters from entire document
                     submission = (
                         f"Assignment:\n=============\n{user_input}\n\n"
                         f"Document Text:\n=========\n{full_text}\n\n\n"
                         "Answer:\n==========\n"
                     )
                     message=[
-                        {"role": "user", "content": submission}
+                        {"role": "Document Reader", "content": submission}
                     ]
                     response = client.chat.completions.create(messages=message, model=gpt_model, temperature=0.2, max_tokens=1000, top_p=1, frequency_penalty=0, presence_penalty=0)
                     result = response.choices[0].message.content
