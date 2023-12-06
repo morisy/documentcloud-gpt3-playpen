@@ -25,8 +25,6 @@ ESCAPE_TABLE = str.maketrans(
         "$": r"\$",
         "*": r"\*",
         ".": r"\.",
-        "'": r"\'",
-        '"': r'\"',
     }
 )
 
@@ -90,7 +88,7 @@ class GPTPlay(AddOn):
         with open("compared_docs.csv", "w+") as file_:
             writer = csv.writer(file_)
             writer.writerow(["document_title", "url", "output"])
-            user_input = self.data["prompt"].translate(ESCAPE_TABLE)
+            user_input = self.data["prompt"].replace("'", r"\'").translate(ESCAPE_TABLE)
             gpt_model = "gpt-3.5-turbo-1106"
             for document in self.get_documents():
                 self.set_message(f"Analyzing document {document.title}.")
