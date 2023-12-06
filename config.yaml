@@ -1,8 +1,8 @@
 title: "GPT-3.5 Turbo Playground"
 description: |
-  Use GPT3 to help analyze your documents, right within DocumentCloud.
+  Use GPT3.5 Turbo to help analyze your documents, right within DocumentCloud.
 
-  Give this a full prompt that you would pass into GPT-3 and it will run it
+  Give this a full prompt that you would pass into GPT-3.5 Turbo and it will run it
   against your selected documents, one at a time. 
 
   The Add-On looks at the first 56,000 characters (~30 pages) in each document, if available. 
