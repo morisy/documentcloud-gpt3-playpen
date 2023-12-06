@@ -36,7 +36,7 @@ properties:
     title: Put a tag here if you would like to save the results as a key value pair on the document.
     type: string
   limiter:
-    title: Enter a smaller search size (number of characters) if you want to limit the search to only the first X characters. 
+    title: Enter a limiter (number of characters) if you want to limit the search to only the first X characters. 
     type: integer
     minimum: 1000
     maximum: 56000
