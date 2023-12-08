@@ -108,7 +108,7 @@ class GPTPlay(AddOn):
                     ]
                     response = client.chat.completions.create(messages=message, model=gpt_model, temperature=0.2, max_tokens=1000, top_p=1, frequency_penalty=0, presence_penalty=0)
                     result = response.choices[0].message.content
-                    time.sleep(7) # A sleep to avoid getting rate limited by token limit by OpenAI
+                    time.sleep(8) # A sleep to avoid getting rate limited by token limit by OpenAI
                     writer.writerow([document.title, document.canonical_url, result])
                     if self.data.get("value"):
                         try:  # should add a proper permission check here.
