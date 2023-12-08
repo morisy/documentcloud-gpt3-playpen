@@ -15,7 +15,7 @@ client = OpenAI(api_key=os.environ["TOKEN"])
 
 AVERAGE_CHARS_PER_PAGE = 1750
 MAX_PAGES = 32
-DEFAULT_CHAR_LIMIT = 56000
+DEFAULT_CHAR_LIMIT = 54000
 
 ESCAPE_TABLE = str.maketrans(
     {
@@ -97,7 +97,7 @@ class GPTPlay(AddOn):
                     # Just starting with page one for now due to API limits.
                     full_text = document.full_text.translate(ESCAPE_TABLE)[
                         :character_limit
-                    ]  # Limiting to first 56k characters from entire document
+                    ]  # Limiting to first 54k characters from entire document
                     submission = (
                         f"Assignment:\n=============\n{user_input}\n\n"
                         f"Document Text:\n=========\n{full_text}\n\n\n"
