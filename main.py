@@ -127,7 +127,7 @@ class GPTPlay(AddOn):
                     time.sleep(8) # A sleep to avoid getting rate limited by token limit by OpenAI
                     writer.writerow([document.title, document.canonical_url, result])
                     if self.data.get("value"):
-                        if (document.user_id == self.user_id)
+                        if (document.user_id == self.user_id):
                             try:  # should add a proper permission check here.
                                 document.data[self.data["value"]] = [str(result)]
                                 document.save()
