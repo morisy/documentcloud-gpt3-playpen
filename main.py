@@ -7,7 +7,7 @@ import math
 import os
 import sys
 import time
-
+import tiktoken
 from openai import OpenAI
 from documentcloud.addon import AddOn
 
@@ -16,6 +16,7 @@ client = OpenAI(api_key=os.environ["TOKEN"])
 AVERAGE_CHARS_PER_PAGE = 1750
 MAX_PAGES = 32
 DEFAULT_CHAR_LIMIT = 54000
+SECONDARY_CHAR_LIMIT = 44000
 
 ESCAPE_TABLE = str.maketrans(
     {
@@ -76,7 +77,9 @@ class GPTPlay(AddOn):
         sys.exit(0)
         
     def main(self):
-        character_limit = DEFAULT_CHAR_LIMIT
+        encoding = tiktoken.get_encoding("cl100k_base")
+        encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
+
         if self.data.get("limiter"):
             character_limit = self.data.get("limiter")
         # If dry_run is selected, it will calculate the cost of translation. 
@@ -96,7 +99,7 @@ class GPTPlay(AddOn):
                 try:
                     # Just starting with page one for now due to API limits.
                     full_text = document.full_text.translate(ESCAPE_TABLE)[
-                        :character_limit
+                        :DEFAULT_CHAR_LIMIT
                     ]  # Limiting to first 54k characters from entire document
                     submission = (
                         f"Assignment:\n=============\n{user_input}\n\n"
@@ -106,6 +109,19 @@ class GPTPlay(AddOn):
                     message=[
                         {"role": "user", "content": submission}
                     ]
+                    
+                    # If the token count is > 15k tokens, we need to truncate the text further
+                    if len(encoding.encode(message)) > 15000:
+                        full_text = document.full_text.translate(ESCAPE_TABLE)[:SECONDARY_CHAR_LIMIT]
+                        submission = (
+                            f"Assignment:\n=============\n{user_input}\n\n"
+                            f"Document Text:\n=========\n{full_text}\n\n\n"
+                            "Answer:\n==========\n"
+                        )
+                        message=[
+                            {"role": "user", "content": submission}
+                        ]
+
                     response = client.chat.completions.create(messages=message, model=gpt_model, temperature=0.2, max_tokens=1000, top_p=1, frequency_penalty=0, presence_penalty=0)
                     result = response.choices[0].message.content
                     time.sleep(8) # A sleep to avoid getting rate limited by token limit by OpenAI
