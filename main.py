@@ -14,7 +14,7 @@ from documentcloud.addon import AddOn
 client = OpenAI(api_key=os.environ["TOKEN"])
 
 AVERAGE_CHARS_PER_PAGE = 1750
-MAX_PAGES = 32
+MAX_PAGES = 30
 DEFAULT_CHAR_LIMIT = 54000
 SECONDARY_CHAR_LIMIT = 44000
 
