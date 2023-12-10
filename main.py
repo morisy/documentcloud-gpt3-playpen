@@ -111,7 +111,7 @@ class GPTPlay(AddOn):
                     ]
                     
                     # If the token count is > 15k tokens, we need to truncate the text further
-                    if len(encoding.encode(message)) > 15000:
+                    if len(encoding.encode(full_text)) > 15000:
                         full_text = document.full_text.translate(ESCAPE_TABLE)[:SECONDARY_CHAR_LIMIT]
                         submission = (
                             f"Assignment:\n=============\n{user_input}\n\n"
