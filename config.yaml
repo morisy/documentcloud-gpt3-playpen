@@ -1,20 +1,21 @@
-title: GPT-3 Playground (Alpha)
+title: "GPT-3.5 Turbo Playground"
 description: |
-  Use GPT3 to help analyze your documents, right within DocumentCloud. Note
-  that this Add-On consumes AI credits, which you can get via a Pro or Organization
-  account.
-  
-  
-  **Note**: This Add-On uses 14 credits per document analyzed.
+  Use GPT3.5 Turbo to help analyze your documents, right within DocumentCloud.
 
-  Give this a full prompt that you would pass into GPT-3 and it will run it
-  against your selected documents, one at a time. The plug in only looks at the first page
-  of a document currently. If you define a custom model, [use the naming
-  conventions from this section](https://beta.openai.com/docs/models/gpt-3).
-  The prompt refers to the user input as the "Assignment," the document's text
-  as "Document Text", and GPT-3's generated response as the "Answer," which can
-  be helpful when defining your prompt.
+  Give this a full prompt that you would pass into GPT-3.5 Turbo and it will run it
+  against your selected documents, one at a time. 
+
+  The Add-On looks at the first 54,000 characters (~30 pages) in each document, if available. 
+  Of course, if the document is only 1 page, it will only look at that page.
   
+  The Add-On cost is approximately 1 AI credit per page if your document has around 1750 characters per page. 
+  If your document has much more text per page, it may be more costly. Additionally, it may not be 30 pages.
+  
+  There is a dry-run option that tells you the cost of running the Add-On on your entire set without charging you. 
+  The cost is capped at 30 AI credits per document per run. 
+
+  If you have large documents but only care about the first 1000 characters in the document, you can set a limiter
+  so that it costs less to run the Add-On. You can set the limit between 1,000 - 54,000 characters.
   
   We'd love your feedback and ideas — drop a note to info at documentcloud dot org or join
   us in the News Nerdery Slack in the #proj-documentcloud channel.
@@ -24,18 +25,27 @@ documents:
   - selected
   - query
 properties:
+  dry_run:
+    title: Dry Run
+    type: boolean
+    description: Select this to calculate the cost of running this prompt, it will not charge you or do anything else.
   prompt:
     title: Give a GPT-3 style prompt
     type: string
   value:
-    title: Put a tag here if you'd like to save the results as a key value pair on the document.
+    title: Put a tag here if you would like to save the results as a key value pair on the document.
     type: string
-
+  limiter:
+    title: Enter a limiter (number of characters) if you want to limit the search to only the first X characters. 
+    type: integer
+    minimum: 1000
+    maximum: 56000
 required:
   - prompt
 categories:
   - ai
   - premium
 cost:
-  amount: 14
-  unit: document
+  price: 1
+  amount: 1
+  unit: page
